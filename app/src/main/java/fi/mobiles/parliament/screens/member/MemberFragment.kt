@@ -1,4 +1,4 @@
-package fi.mobiles.parliament
+package fi.mobiles.parliament.screens.member
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import fi.mobiles.parliament.MemberOfParliament
+import fi.mobiles.parliament.ParliamentMembersData
+import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberBinding
 import java.util.*
 
@@ -15,7 +18,7 @@ import java.util.*
 class MemberFragment : Fragment() {
     private lateinit var binding: FragmentMemberBinding
     private val parliamentData = ParliamentMembersData
-    private val members: List<MemberOfParliament> = parliamentData.members
+    private val members: List<MemberOfParliament> = ParliamentMembersData.members
     var randomIndex: Int = 0
 
     override fun onCreateView(
@@ -24,7 +27,7 @@ class MemberFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_member, container, false)
+           R.layout.fragment_member, container, false)
 
         //Display member randomly by clicking Random button
         displayMember(randomIndex)

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="fi.mobiles.parliament.MemberFragment">
+    tools:context="fi.mobiles.parliament.screens.member.MemberFragment">
 
     <LinearLayout
         android:id="@+id/member"

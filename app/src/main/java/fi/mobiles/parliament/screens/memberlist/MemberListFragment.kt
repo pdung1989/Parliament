@@ -1,4 +1,4 @@
-package fi.mobiles.parliament
+package fi.mobiles.parliament.screens.memberlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberListBinding
 
 
