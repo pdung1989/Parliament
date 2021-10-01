@@ -6,7 +6,7 @@ import androidx.room.*
 // create DAO class and define methods that can access the database
 @Dao
 interface MemberDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(member: Member)
 
     @Update
