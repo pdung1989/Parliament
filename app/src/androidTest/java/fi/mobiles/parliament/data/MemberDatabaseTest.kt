@@ -1,5 +1,4 @@
 package fi.mobiles.parliament.data
-import androidx.lifecycle.LiveData
 import org.junit.Assert.*
 
 import androidx.room.Room
@@ -10,6 +9,7 @@ import org.junit.Test
 import org.junit.Before
 import org.junit.runner.RunWith
 import java.io.IOException
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -41,13 +41,39 @@ class MemberDatabaseTest {
         memberDataBase.close()
     }
 
-    //run the test to insert member data, then access the first member (id=1) from DAO
+    //Test insert member data and get the first member by Id
     @Test
     @Throws(Exception::class)
     fun insertAndGetMember() {
-        val member = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
-        memberDao.insert(member)
+        val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
+        memberDao.insert(member1)
         val firstMember = memberDao.get(1)
         assertEquals(firstMember?.bornYear, "1966" )
+    }
+
+    //Test insert member data and get list of members by party
+    @Test
+    fun getMembersOfParty() {
+        val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
+        val member2 = Member(2, "Hu", "Pet", "ps", false, "1966", "Satakunta"   )
+        val member3 = Member(3, "Hur", "Petr", "vihr", false, "1966", "Uusima"   )
+        memberDao.insert(member1)
+        memberDao.insert(member2)
+        memberDao.insert(member3)
+        var membersByParty = memberDao.getMembersByParty("ps")
+        assertEquals(membersByParty.value?.size, 2 )
+    }
+
+    //Test insert member data and get list of Parties
+    @Test
+    fun getParties() {
+        val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
+        val member2 = Member(2, "Hu", "Pet", "ps", false, "1966", "Satakunta"   )
+        val member3 = Member(3, "Hur", "Petr", "vihr", false, "1966", "Uusima"   )
+        memberDao.insert(member1)
+        memberDao.insert(member2)
+        memberDao.insert(member3)
+        var parties = memberDao.getAllParties()
+        assertEquals(parties, listOf("ps", "vihr"))
     }
 }
