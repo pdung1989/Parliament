@@ -16,7 +16,7 @@ interface MemberDao {
     fun getAllParties(): List<String>
 
     @Query("SELECT * FROM member_table WHERE party = :party")
-    fun getMembersByParty(party: String): LiveData<List<Member>>
+    fun getMembersByParty(party: String): List<Member>
 
     @Query("SELECT * FROM member_table WHERE Id = :key")
     fun get(key: Long): Member?

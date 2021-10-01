@@ -1,19 +1,16 @@
 package fi.mobiles.parliament.data
-import androidx.lifecycle.LiveData
 import org.junit.Assert.*
 
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import fi.mobiles.parliament.getOrAwaitValue
-import fi.mobiles.parliament.getValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
 import org.junit.Test
 import org.junit.Before
 import org.junit.runner.RunWith
 import java.io.IOException
-import java.util.Observer
 
 
 /**
@@ -66,7 +63,7 @@ class MemberDatabaseTest {
         memberDao.insert(member1)
         memberDao.insert(member2)
         memberDao.insert(member3)
-        val membersByParty = memberDao.getMembersByParty("ps").getOrAwaitValue()
+        val membersByParty = memberDao.getMembersByParty("ps")
         assertEquals(membersByParty.size, 2)
     }
 

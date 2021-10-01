@@ -5,6 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+/**
+ * A database that stores Member information.
+ * And a global method to get access to the database.
+ **/
 //Create member database
 @Database(entities = [Member::class], version = 1, exportSchema = false)
 abstract class MemberDatabase : RoomDatabase() {
