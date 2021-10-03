@@ -19,7 +19,6 @@ import java.io.IOException
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 
-@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class MemberDatabaseTest {
 
@@ -55,17 +54,17 @@ class MemberDatabaseTest {
     }
 
     //Test insert member data and get list of members by party
-//    @Test
-//    suspend fun getMembersOfParty() {
-//        val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
-//        val member2 = Member(2, "Hu", "Pet", "ps", false, "1966", "Satakunta"   )
-//        val member3 = Member(3, "Hur", "Petr", "vihr", false, "1966", "Uusima"   )
-//        memberDao.insert(member1)
-//        memberDao.insert(member2)
-//        memberDao.insert(member3)
-//        val membersByParty = memberDao.getMembersByParty("ps")
-//        assertEquals(membersByParty.size, 2)
-//    }
+    @Test
+    suspend fun getMembersOfParty() {
+        val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
+        val member2 = Member(2, "Hu", "Pet", "ps", false, "1966", "Satakunta"   )
+        val member3 = Member(3, "Hur", "Petr", "vihr", false, "1966", "Uusima"   )
+        memberDao.insert(member1)
+        memberDao.insert(member2)
+        memberDao.insert(member3)
+        val membersByParty = memberDao.getMembersByParty("ps")
+        assertEquals(membersByParty.size, 2)
+    }
 
     //Test insert member data and get list of Parties
     @Test
