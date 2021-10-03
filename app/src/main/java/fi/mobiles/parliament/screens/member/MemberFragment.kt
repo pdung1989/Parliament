@@ -69,7 +69,6 @@ class MemberFragment : Fragment() {
 //    //display info of a member on screen
 //    private fun displayMember() {
 //        binding.imageParty.setImageResource(viewModel.imageDrawable)
-//        //check if member is minister
 //        binding.status.text = viewModel.status
 //
 //        binding.firstname.text = viewModel.name

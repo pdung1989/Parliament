@@ -2,6 +2,7 @@ package fi.mobiles.parliament.screens.member
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.data.MemberDao
@@ -14,10 +15,10 @@ class MemberViewModel(
     val database: MemberDao,
     application: Application): AndroidViewModel(application) {
 
-    private val readAllData = database.getAll()
+    private val readAllData: LiveData<List<Member>>
 
-    fun getAllMember() {
-        database.getAll()
+    init {
+        readAllData = database.getAll()
     }
 
     suspend fun insert(member: Member) {
@@ -25,6 +26,7 @@ class MemberViewModel(
             database.insert(member)
         }
     }
+
 //    //private val parliamentData = ParliamentMembersData
 //    private var members: List<MemberOfParliament> = ParliamentMembersData.members
 //    var randomIndex: Int = 0
