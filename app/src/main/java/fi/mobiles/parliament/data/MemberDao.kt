@@ -7,19 +7,19 @@ import androidx.room.*
 @Dao
 interface MemberDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(member: Member)
+    suspend fun insert(member: Member)
 
     @Update
-    fun update(member: Member)
+    suspend fun update(member: Member)
 
     @Query("SELECT DISTINCT party FROM member_table")
     fun getAllParties(): List<String>
 
     @Query("SELECT * FROM member_table WHERE party = :party")
-    fun getMembersByParty(party: String): List<Member>
+    suspend fun getMembersByParty(party: String): List<Member>
 
     @Query("SELECT * FROM member_table WHERE Id = :key")
-    fun get(key: Long): Member?
+    suspend fun getMember(key: Long): Member?
 
     @Query("SELECT * FROM member_table ORDER BY Id ASC")
     fun getAll(): LiveData<List<Member>>

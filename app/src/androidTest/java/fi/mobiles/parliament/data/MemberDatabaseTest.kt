@@ -47,16 +47,16 @@ class MemberDatabaseTest {
     //Test insert member data and get the first member by Id
     @Test
     @Throws(Exception::class)
-    fun insertAndGetMember() {
+    suspend fun insertAndGetMember() {
         val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
         memberDao.insert(member1)
-        val firstMember = memberDao.get(1)
+        val firstMember = memberDao.getMember(1)
         assertEquals(firstMember?.bornYear, "1966" )
     }
 
     //Test insert member data and get list of members by party
     @Test
-    fun getMembersOfParty() {
+    suspend fun getMembersOfParty() {
         val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
         val member2 = Member(2, "Hu", "Pet", "ps", false, "1966", "Satakunta"   )
         val member3 = Member(3, "Hur", "Petr", "vihr", false, "1966", "Uusima"   )
@@ -69,7 +69,7 @@ class MemberDatabaseTest {
 
     //Test insert member data and get list of Parties
     @Test
-    fun getParties() {
+    suspend fun getParties() {
         val member1 = Member(1, "Huru", "Petri", "ps", false, "1966", "Satakunta"   )
         val member2 = Member(2, "Hu", "Pet", "ps", false, "1966", "Satakunta"   )
         val member3 = Member(3, "Hur", "Petr", "vihr", false, "1966", "Uusima"   )
