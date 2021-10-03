@@ -2,27 +2,27 @@ package fi.mobiles.parliament.screens.member
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import fi.mobiles.parliament.data.Member
-import fi.mobiles.parliament.data.MemberDatabase
-import fi.mobiles.parliament.data.MemberRepository
-import kotlinx.coroutines.Dispatchers
+import fi.mobiles.parliament.data.MemberDao
 import kotlinx.coroutines.launch
 
-class MemberViewModel(application: Application, var repository: MemberRepository): AndroidViewModel(application) {
+/**
+ * ViewModel for MemberFragment.
+ */
+class MemberViewModel(
+    val database: MemberDao,
+    application: Application): AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<Member>>
+    private val readAllData = database.getAll()
 
-    init {
-        val memberDao = MemberDatabase.getInstance(application).memberDao
-        repository = MemberRepository(memberDao)
-        readAllData = repository.readAllData
+    fun getAllMember() {
+        database.getAll()
     }
 
-    fun insert(member: Member) {
+    suspend fun insert(member: Member) {
         viewModelScope.launch {
-            repository.insert(member)
+            database.insert(member)
         }
     }
 //    //private val parliamentData = ParliamentMembersData

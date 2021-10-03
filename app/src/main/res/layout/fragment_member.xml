@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="fi.mobiles.parliament.screens.member.MemberFragment">
 
+    <data>
+        <variable
+            name="memberViewModel"
+            type="fi.mobiles.parliament.screens.member.MemberViewModel" />
+    </data>
+
     <LinearLayout
         android:id="@+id/member"
         android:layout_width="match_parent"
