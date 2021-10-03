@@ -1,5 +1,7 @@
 package fi.mobiles.parliament.network
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -10,21 +12,20 @@ import retrofit2.http.GET
 // val are valuated at run time.
 private const val BASE_URL = "https://users.metropolia.fi/~peterh/mps"
 
-//private val moshi = Moshi.Builder()
-//    .add(KotlinJsonAdapterFactory())
-//    .build()
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
 
 //create a Retrofit object by using retrofit builder
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
 
 //Define an Interface for possible API calls
 interface MembersApiService {
-    @GET("mps")
-    fun getProperties():
-            Call<String>
+    @GET("mps.json")
+    suspend fun getProperties(): ParliamentInfo
 }
 
 //initialize the Retrofit service
