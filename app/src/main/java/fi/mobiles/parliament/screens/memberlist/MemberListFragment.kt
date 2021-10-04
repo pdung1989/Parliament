@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import fi.mobiles.parliament.R
+import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.data.MemberDatabase
 import fi.mobiles.parliament.databinding.FragmentMemberListBinding
 import fi.mobiles.parliament.screens.member.MemberViewModel
 import fi.mobiles.parliament.screens.member.MemberViewModelFactory
+import java.util.Observer
 
 
 class MemberListFragment : Fragment() {
@@ -36,21 +38,27 @@ class MemberListFragment : Fragment() {
         //initialize ViewModel
         memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
 
+        //binding ViewModel
+        binding.memberListViewModel = memberListViewModel
+
         // Specify the fragment view as the lifecycle owner of the binding.
         // This is used so that the binding can observe LiveData updates
         binding.setLifecycleOwner(this)
-
-        //binding ViewModel
-        binding.memberListViewModel = memberListViewModel
 
 //        binding.detailMemberButton.setOnClickListener{
 //            findNavController().navigate(R.id.action_memberListFragment_to_memberFragment)
 //        }
 
+        //set Adapter for RecyclerView
         val adapter = MemberListAdapter()
         binding.memberList.adapter = adapter
 
+        memberListViewModel.memberList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
+
         return binding.root
     }
-
 }

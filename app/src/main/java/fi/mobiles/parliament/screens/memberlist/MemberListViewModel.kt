@@ -13,11 +13,13 @@ import kotlinx.coroutines.launch
 class MemberListViewModel(val database: MemberDao,
                            application: Application): AndroidViewModel(application) {
     // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
+    val _response = MutableLiveData<String>()
 
     // The external immutable LiveData for the response String
     val response: LiveData<String>
         get() = _response
+
+    val memberList = database.getAll()
 
     init {
         getParliamentInfo()
