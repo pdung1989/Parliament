@@ -43,9 +43,12 @@ class MemberListFragment : Fragment() {
         //binding ViewModel
         binding.memberListViewModel = memberListViewModel
 
-        binding.detailMemberButton.setOnClickListener{
-            findNavController().navigate(R.id.action_memberListFragment_to_memberFragment)
-        }
+//        binding.detailMemberButton.setOnClickListener{
+//            findNavController().navigate(R.id.action_memberListFragment_to_memberFragment)
+//        }
+
+        val adapter = MemberListAdapter()
+        binding.memberList.adapter = adapter
 
         return binding.root
     }

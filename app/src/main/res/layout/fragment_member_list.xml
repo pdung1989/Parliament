@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".screens.memberlist.MemberListFragment">
 
@@ -10,26 +11,20 @@
             type="fi.mobiles.parliament.screens.memberlist.MemberListViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <TextView
-            style="@style/Style1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello All Members" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/member_list"
+            android:layout_width="409dp"
+            android:layout_height="729dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="1dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/detail_member_button"
-            style="@style/Style1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/member_details" />
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
