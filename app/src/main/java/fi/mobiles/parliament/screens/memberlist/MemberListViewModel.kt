@@ -1,10 +1,9 @@
 package fi.mobiles.parliament.screens.memberlist
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import fi.mobiles.parliament.data.MemberDao
 import fi.mobiles.parliament.network.MembersApi
 import kotlinx.coroutines.launch
 
@@ -12,7 +11,8 @@ import kotlinx.coroutines.launch
  * The [ViewModel] that is attached to the [MemberListFragment].
  */
 
-class MemberListViewModel: ViewModel() {
+class MemberListViewModel(val database: MemberDao,
+                           application: Application): AndroidViewModel(application) {
     // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<String>()
 
@@ -34,8 +34,12 @@ class MemberListViewModel: ViewModel() {
     private fun getParliamentInfo() {
         viewModelScope.launch {
             try {
-                val listResult = MembersApi.retrofitService.getProperties().members
-                _response.value = "Success: ${listResult.size} Members properties retrieved"
+                val listResult = MembersApi.retrofitService.getProperties()
+                _response.value =
+                    "Success: ${listResult.size} Member properties retrieved"
+                    if(listResult.isNotEmpty()) {
+                        listResult.map {database.insert(it)}
+                    }
                 Log.i("Numbers of members: ", "${listResult.size}")
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
