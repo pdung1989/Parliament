@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 /**
  * The [ViewModel] that is attached to the [MemberListFragment].
  */
-
 class MemberListViewModel(val database: MemberDao,
                            application: Application): AndroidViewModel(application) {
     // The internal MutableLiveData String that stores the most recent response
@@ -20,17 +19,12 @@ class MemberListViewModel(val database: MemberDao,
     val response: LiveData<String>
         get() = _response
 
-    /**
-     * Call getMembersProperties() on init so we can display status immediately.
-     */
     init {
         getParliamentInfo()
     }
 
-    /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
-     * Mars properties retrieved.
-     */
+    // Sets the value of the response LiveData to the Members API status or the successful
+    // number of  Member properties retrieved.
     private fun getParliamentInfo() {
         viewModelScope.launch {
             try {

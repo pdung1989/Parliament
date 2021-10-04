@@ -29,17 +29,18 @@ class MemberListFragment : Fragment() {
         // The requireNotNull Kotlin function throws an IllegalArgumentException if the value is null
         val application = requireNotNull(this.activity).application
 
-        //create an instance from DAO
+        //create an object to access data
         val dataSource = MemberDatabase.getInstance(application).memberDao
-
         val viewModelFactory = MemberListViewModelFactory(dataSource, application)
 
         //initialize ViewModel
         memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
 
-        //binding ViewModel
+        // Specify the fragment view as the lifecycle owner of the binding.
+        // This is used so that the binding can observe LiveData updates
         binding.setLifecycleOwner(this)
 
+        //binding ViewModel
         binding.memberListViewModel = memberListViewModel
 
         binding.detailMemberButton.setOnClickListener{

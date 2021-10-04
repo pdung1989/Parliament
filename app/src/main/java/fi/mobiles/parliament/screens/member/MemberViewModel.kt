@@ -21,9 +21,9 @@ class MemberViewModel(
         readAllData = database.getAll()
     }
 
-    suspend fun insert(member: Member) {
+    suspend fun getMember(id: Long) {
         viewModelScope.launch {
-            database.insert(member)
+            database.getMember(id)
         }
     }
 

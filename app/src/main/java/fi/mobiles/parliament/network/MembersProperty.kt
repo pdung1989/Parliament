@@ -1,7 +1,5 @@
 package fi.mobiles.parliament.network
 
-data class ParliamentInfo (val members: List<MembersProperty>)
-
 data class MembersProperty(
     val personNumber: String,
     val seatNumber: Int,
