@@ -24,6 +24,7 @@ class MemberListViewModel(context: Context): ViewModel() {
 
     //database
     private var database: MemberDao
+
     //get list of members from database
     private lateinit var _allMembers: LiveData<List<Member>>
 
@@ -40,16 +41,13 @@ class MemberListViewModel(context: Context): ViewModel() {
    fun getParliamentInfo() {
         viewModelScope.launch {
             try {
-            //    _response.value = MembersApi.retrofitService.getProperties()
                 val fetchedData = MembersApi.retrofitService.getProperties()
-                Log.i("fetch", "success")
                 _response.value = fetchedData
 
                 //insert data to Room
                 if(fetchedData.isNotEmpty()) {
                     fetchedData.forEach {
                         database.insert(it)
-                        Log.i("db", "abcde")
                     }
                 }
 
