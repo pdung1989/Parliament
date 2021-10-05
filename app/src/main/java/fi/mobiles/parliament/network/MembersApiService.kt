@@ -10,7 +10,7 @@ import retrofit2.http.GET
 // val can be initialized runtime, const not.
 // compiler replaces references to const types when compiling
 // val are valuated at run time.
-private const val BASE_URL = "https://users.metropolia.fi/~peterh/mps"
+private const val BASE_URL = "https://users.metropolia.fi/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 
 //Define an Interface for possible API calls
 interface MembersApiService {
-    @GET("mps.json")
+    @GET("~peterh/mps.json")
     suspend fun getProperties(): List<Member>
 }
 

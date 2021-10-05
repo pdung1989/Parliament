@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.data.MemberDatabase
 import fi.mobiles.parliament.databinding.FragmentMemberBinding
-import java.util.*
 
 //create a Fragment for displaying info of a member
 class MemberFragment : Fragment() {
@@ -43,23 +41,14 @@ class MemberFragment : Fragment() {
         // Specify the fragment view as the lifecycle owner of the binding.
         binding.setLifecycleOwner(this)
 
-        //binding viewModel
-        binding.memberViewModel = memberViewModel
+//        //binding viewModel
+//        binding.memberViewModel = memberViewModel
 
         //back to Party List screen
-        binding.backToPartyButton.setOnClickListener{
-            findNavController().navigate(R.id.action_memberFragment_to_partyListFragment)
-        }
+//        binding.backToPartyButton.setOnClickListener{
+//            findNavController().navigate(R.id.action_memberFragment_to_partyListFragment)
+//        }
 
         return binding.root
     }
-//    //display info of a member on screen
-//    private fun displayMember() {
-//        binding.imageParty.setImageResource(viewModel.imageDrawable)
-//        binding.status.text = viewModel.status
-//
-//        binding.firstname.text = viewModel.name
-//        binding.age.text = viewModel.age
-//        binding.constituency.text = viewModel.constituency
-//    }
 }

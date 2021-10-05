@@ -7,14 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import fi.mobiles.parliament.R
-import fi.mobiles.parliament.data.Member
-import fi.mobiles.parliament.data.MemberDatabase
 import fi.mobiles.parliament.databinding.FragmentMemberListBinding
-import fi.mobiles.parliament.screens.member.MemberViewModel
-import fi.mobiles.parliament.screens.member.MemberViewModelFactory
-import java.util.Observer
 
 
 class MemberListFragment : Fragment() {
@@ -29,35 +23,27 @@ class MemberListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_list, container, false )
 
         // The requireNotNull Kotlin function throws an IllegalArgumentException if the value is null
-        val application = requireNotNull(this.activity).application
+        //val application = requireNotNull(this.activity).application
 
         //create an object to access data
-        val dataSource = MemberDatabase.getInstance(application).memberDao
-        val viewModelFactory = MemberListViewModelFactory(dataSource, application)
+        val viewModelFactory = MemberListViewModelFactory(requireContext())
 
         //initialize ViewModel
         memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
 
-        //binding ViewModel
-        binding.memberListViewModel = memberListViewModel
-
+        memberListViewModel.getAllMembers()
         // Specify the fragment view as the lifecycle owner of the binding.
         // This is used so that the binding can observe LiveData updates
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
-//        binding.detailMemberButton.setOnClickListener{
-//            findNavController().navigate(R.id.action_memberListFragment_to_memberFragment)
-//        }
-
-        //set Adapter for RecyclerView
+        // set Adapter for RecyclerView
         val adapter = MemberListAdapter()
         binding.memberList.adapter = adapter
 
-        memberListViewModel.memberList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            it?.let {
+        memberListViewModel.allMembers.observe(viewLifecycleOwner,
+            androidx.lifecycle.Observer {
                 adapter.data = it
-            }
-        })
+            })
 
         return binding.root
     }

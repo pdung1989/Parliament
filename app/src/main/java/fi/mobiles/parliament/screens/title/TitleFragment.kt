@@ -21,9 +21,9 @@ class TitleFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
             R.layout.fragment_title, container, false)
 
-        binding.partyListButton.setOnClickListener{ view: View ->
-            view.findNavController().navigate(R.id.action_titleFragment_to_partyListFragment)
-        }
+//        binding.partyListButton.setOnClickListener{ view: View ->
+//            view.findNavController().navigate(R.id.action_titleFragment_to_partyListFragment)
+//        }
         return binding.root
     }
 }

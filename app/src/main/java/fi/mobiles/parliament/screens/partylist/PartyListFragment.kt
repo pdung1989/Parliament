@@ -20,9 +20,9 @@ class PartyListFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentPartyListBinding>(inflater,
             R.layout.fragment_party_list, container, false)
 
-        binding.memberListButton.setOnClickListener{
-            findNavController().navigate(R.id.action_partyListFragment_to_memberListFragment)
-        }
+//        binding.memberListButton.setOnClickListener{
+//            findNavController().navigate(R.id.action_partyListFragment_to_memberListFragment)
+//        }
         return binding.root
     }
 }

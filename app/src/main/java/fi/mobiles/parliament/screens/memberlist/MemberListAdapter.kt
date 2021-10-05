@@ -1,5 +1,6 @@
 package fi.mobiles.parliament.screens.memberlist
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import fi.mobiles.parliament.data.Member
 class MemberListAdapter: RecyclerView.Adapter<MemberListAdapter.ViewHolder>() {
 
     var data = listOf<Member>()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -21,14 +23,14 @@ class MemberListAdapter: RecyclerView.Adapter<MemberListAdapter.ViewHolder>() {
     //RecyclerView needs to know how many items the adapter has for it to display
     override fun getItemCount() = data.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        val res = holder.itemView.context.resources
-
+//        val res = holder.itemView.context.resources
         holder.name.text = item.first + " " + item.last
         holder.constituency.text = item.constituency
 
-        var imageDrawable = when(item.party) {
+        val imageDrawable = when(item.party) {
             "sd" -> R.drawable.sd
             "ps" -> R.drawable.ps
             "kd" -> R.drawable.kd
@@ -48,9 +50,8 @@ class MemberListAdapter: RecyclerView.Adapter<MemberListAdapter.ViewHolder>() {
         val layoutInflater = LayoutInflater.from(parent.context)
 
         val view = layoutInflater
-            .inflate(R.layout.text_item_view, parent, false) as TextView
+            .inflate(R.layout.list_item_member, parent, false)
         return ViewHolder(view)
-
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

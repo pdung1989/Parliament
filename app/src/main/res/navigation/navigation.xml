@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/titleFragment">
-    <fragment
-        android:id="@+id/titleFragment"
-        android:name="fi.mobiles.parliament.screens.title.TitleFragment"
-        android:label="Parliament"
-        tools:layout="@layout/fragment_title" >
-        <action
-            android:id="@+id/action_titleFragment_to_partyListFragment"
-            app:destination="@id/partyListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/partyListFragment"
-        android:name="fi.mobiles.parliament.screens.partylist.PartyListFragment"
-        android:label="fragment_party_list"
-        tools:layout="@layout/fragment_party_list" >
-        <action
-            android:id="@+id/action_partyListFragment_to_memberListFragment"
-            app:destination="@id/memberListFragment" />
-    </fragment>
+    app:startDestination="@id/memberListFragment">
+<!--    <fragment-->
+<!--        android:id="@+id/titleFragment"-->
+<!--        android:name="fi.mobiles.parliament.screens.title.TitleFragment"-->
+<!--        android:label="Parliament"-->
+<!--        tools:layout="@layout/fragment_title" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_titleFragment_to_partyListFragment"-->
+<!--            app:destination="@id/partyListFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/partyListFragment"-->
+<!--        android:name="fi.mobiles.parliament.screens.partylist.PartyListFragment"-->
+<!--        android:label="fragment_party_list"-->
+<!--        tools:layout="@layout/fragment_party_list" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_partyListFragment_to_memberListFragment"-->
+<!--            app:destination="@id/memberListFragment" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/memberListFragment"
         android:name="fi.mobiles.parliament.screens.memberlist.MemberListFragment"
@@ -36,8 +36,5 @@
         android:name="fi.mobiles.parliament.screens.member.MemberFragment"
         android:label="fragment_member"
         tools:layout="@layout/fragment_member" >
-        <action
-            android:id="@+id/action_memberFragment_to_partyListFragment"
-            app:destination="@id/partyListFragment" />
     </fragment>
 </navigation>

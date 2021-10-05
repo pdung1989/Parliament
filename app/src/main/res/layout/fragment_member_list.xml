@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".screens.memberlist.MemberListFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!--    data binding viewmodel-->
-    <data>
-        <variable
-            name="memberListViewModel"
-            type="fi.mobiles.parliament.screens.memberlist.MemberListViewModel" />
-    </data>
+<!--    <data>-->
+<!--        <variable-->
+<!--            name="memberListViewModel"-->
+<!--            type="fi.mobiles.parliament.screens.memberlist.MemberListViewModel" />-->
+<!--    </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".screens.memberlist">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/member_list"
-            android:layout_width="409dp"
-            android:layout_height="729dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="1dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
