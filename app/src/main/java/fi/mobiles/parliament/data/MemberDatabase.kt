@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import fi.mobiles.parliament.screens.memberlist.MemberListFragment
+import fi.mobiles.parliament.MyApp
+import fi.mobiles.parliament.screens.member.MemberViewModel
 
 /**
  * A database that stores Member information.
@@ -18,13 +19,13 @@ abstract class MemberDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: MemberDatabase? = null
-        fun getInstance(context: Context): MemberDatabase {
+        fun getInstance(): MemberDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        context.applicationContext,
+                        MyApp.appContext,
                         MemberDatabase::class.java,
                         "member_database"
                     )

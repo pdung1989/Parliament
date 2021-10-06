@@ -32,13 +32,13 @@ class MemberListViewModel(context: Context): ViewModel() {
         get() = _navigateToMember
 
     init {
-        database = MemberDatabase.getInstance(context).memberDao
+        database = MemberDatabase.getInstance().memberDao
         getParliamentInfo()
     }
 
     // Sets the value of the response LiveData to the Members API status or the successful
     // number of  Member properties retrieved.
-   fun getParliamentInfo() {
+    fun getParliamentInfo() {
         viewModelScope.launch {
             try {
                 val fetchedData = MembersApi.retrofitService.getProperties()

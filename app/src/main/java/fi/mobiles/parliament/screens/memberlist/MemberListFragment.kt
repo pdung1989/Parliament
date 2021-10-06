@@ -40,8 +40,7 @@ class MemberListFragment : Fragment() {
         // set Adapter for RecyclerView
         val adapter = MemberListAdapter(MemberListener { personNumber ->
             Toast.makeText(context, "${personNumber}", Toast.LENGTH_LONG).show()
-            Log.i("Toast", "TTTT")
-           // memberListViewModel.onMemberClicked(personNumber)
+            memberListViewModel.onMemberClicked(personNumber)
         })
 
         binding.memberList.adapter = adapter
@@ -51,11 +50,17 @@ class MemberListFragment : Fragment() {
                 adapter.submitList(it)
             })
 
-        Log.i("clicked", "clkkkkk")
-//        memberListViewModel.navigateToMember.observe(viewLifecycleOwner, Observer {
-//                this.findNavController().navigate(R.id.action_memberListFragment_to_memberFragment)
-//               memberListViewModel.onMemberNavigated()
-//        })
+        //navigate to Member Fragment
+        memberListViewModel.navigateToMember.observe(viewLifecycleOwner, Observer { personNumber ->
+            personNumber?.let {
+                this.findNavController().navigate(
+                    MemberListFragmentDirections
+                        .actionMemberListFragmentToMemberFragment(personNumber)
+                )
+                memberListViewModel.onMemberNavigated()
+            }
+        })
+
         return binding.root
     }
 }

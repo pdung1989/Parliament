@@ -73,16 +73,6 @@
             tools:src="@tools:sample/avatars" />
 
         <Button
-            android:id="@+id/random_button"
-            style="@style/Style1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/random_member"
-            app:backgroundTint="#4CAF50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-        <Button
             android:id="@+id/back_to_party_button"
             style="@style/Style1"
             android:layout_width="match_parent"

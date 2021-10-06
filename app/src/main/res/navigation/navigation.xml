@@ -36,5 +36,8 @@
         android:name="fi.mobiles.parliament.screens.member.MemberFragment"
         android:label="fragment_member"
         tools:layout="@layout/fragment_member" >
+        <argument
+            android:name="personNumber"
+            app:argType="integer" />
     </fragment>
 </navigation>

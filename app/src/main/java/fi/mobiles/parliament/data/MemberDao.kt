@@ -16,8 +16,8 @@ interface MemberDao {
     suspend fun getMembersByParty(party: String): List<Member>
 
     // Use person number as the id of each member
-    @Query("SELECT * FROM member_table WHERE personNumber = :id")
-    fun getMember(id: Int): LiveData<Member>
+    @Query("SELECT * FROM member_table WHERE personNumber = :personNumber")
+    fun getMember(personNumber: Int): LiveData<Member>
 
     @Query("SELECT * FROM member_table ORDER BY first ASC")
     fun getAll(): LiveData<List<Member>>
