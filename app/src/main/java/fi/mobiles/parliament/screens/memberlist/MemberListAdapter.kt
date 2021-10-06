@@ -1,7 +1,5 @@
 package fi.mobiles.parliament.screens.memberlist
 
-import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -22,8 +20,6 @@ class MemberListAdapter(private val clickListener: MemberListener): ListAdapter<
 //        }
     //RecyclerView needs to know how many items the adapter has for it to display
     //override fun getItemCount() = data.size
-
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), clickListener)
     }
@@ -37,6 +33,7 @@ class MemberListAdapter(private val clickListener: MemberListener): ListAdapter<
 
         fun bind(member: Member, clickListener: MemberListener) {
             binding.clickListener = clickListener
+            binding.member = member
             binding.name.text = member.first + " " + member.last
             binding.constituency.text = member.constituency
 
