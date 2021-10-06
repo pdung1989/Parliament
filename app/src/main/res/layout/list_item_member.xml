@@ -7,11 +7,15 @@
         <variable
             name="member"
             type="fi.mobiles.parliament.data.Member"/>
+        <variable
+            name="clickListener"
+            type="fi.mobiles.parliament.screens.memberlist.MemberListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(member)}">
 
         <ImageView
             android:id="@+id/party_image"

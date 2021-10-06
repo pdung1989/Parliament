@@ -1,28 +1,31 @@
 package fi.mobiles.parliament.screens.memberlist
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.databinding.ListItemMemberBinding
 
 
-class MemberListAdapter: RecyclerView.Adapter<MemberListAdapter.ViewHolder>() {
-    var data = listOf<Member>()
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class MemberListAdapter(private val clickListener: MemberListener): ListAdapter<Member, MemberListAdapter.ViewHolder>(MemberListDiffCallback()) {
+
+//    var data = listOf<Member>()
+//        @SuppressLint("NotifyDataSetChanged")
+//        set(value) {
+//            field = value
+//            notifyDataSetChanged()
+//        }
     //RecyclerView needs to know how many items the adapter has for it to display
-    override fun getItemCount() = data.size
+    //override fun getItemCount() = data.size
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.bind(item)
+        holder.bind(getItem(position), clickListener)
     }
 
     // Call when the RecyclerView need a viewHolder
@@ -30,14 +33,14 @@ class MemberListAdapter: RecyclerView.Adapter<MemberListAdapter.ViewHolder>() {
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ListItemMemberBinding):
-        RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: ListItemMemberBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Member) {
-            binding.name.text = item.first + " " + item.last
-            binding.constituency.text = item.constituency
+        fun bind(member: Member, clickListener: MemberListener) {
+            binding.clickListener = clickListener
+            binding.name.text = member.first + " " + member.last
+            binding.constituency.text = member.constituency
 
-            val imageDrawable = when (item.party) {
+            val imageDrawable = when (member.party) {
                 "sd" -> R.drawable.sd
                 "ps" -> R.drawable.ps
                 "kd" -> R.drawable.kd
@@ -60,4 +63,17 @@ class MemberListAdapter: RecyclerView.Adapter<MemberListAdapter.ViewHolder>() {
             }
         }
     }
+}
+
+class MemberListDiffCallback: DiffUtil.ItemCallback<Member>() {
+    override fun areItemsTheSame(oldItem: Member, newItem: Member): Boolean {
+        return oldItem.personNumber == newItem.personNumber
+    }
+
+    override fun areContentsTheSame(oldItem: Member, newItem: Member): Boolean {
+        return oldItem == newItem
+    }
+}
+class MemberListener(val clickListener: (personNumber: Int) -> Unit) {
+    fun onClick(member: Member) = clickListener(member.personNumber)
 }

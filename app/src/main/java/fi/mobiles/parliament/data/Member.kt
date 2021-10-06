@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "member_table")
     data class Member(
        @PrimaryKey
-       val personNumber: String,
+       val personNumber: Int,
 
        val seatNumber: Int,
 

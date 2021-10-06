@@ -14,22 +14,22 @@ import kotlinx.coroutines.launch
  * The [ViewModel] that is attached to the [MemberListFragment].
  */
 class MemberListViewModel(context: Context): ViewModel() {
+    var database: MemberDao
 
     // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<List<Member>>()
-
-    // The external immutable LiveData for the response String
     val response: LiveData<List<Member>>
         get() = _response
 
-    //database
-    private var database: MemberDao
-
     //get list of members from database
     private lateinit var _allMembers: LiveData<List<Member>>
-
     val allMembers: LiveData<List<Member>>
         get() = _allMembers
+
+    // navigate to member fragment
+    private val _navigateToMember = MutableLiveData<Int?>()
+    val navigateToMember
+        get() = _navigateToMember
 
     init {
         database = MemberDatabase.getInstance(context).memberDao
@@ -60,5 +60,13 @@ class MemberListViewModel(context: Context): ViewModel() {
 
     fun getAllMembers() {
         _allMembers = database.getAll()
+    }
+
+    fun onMemberClicked(personNumber: Int) {
+        _navigateToMember.value = personNumber
+    }
+
+    fun onMemberNavigated() {
+        _navigateToMember.value = null
     }
 }
