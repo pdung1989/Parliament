@@ -22,9 +22,6 @@ class MemberListFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_list, container, false )
 
-        // The requireNotNull Kotlin function throws an IllegalArgumentException if the value is null
-        //val application = requireNotNull(this.activity).application
-
         //create an object to access data
         val viewModelFactory = MemberListViewModelFactory(requireContext())
 
