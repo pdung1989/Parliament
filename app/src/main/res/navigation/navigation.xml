@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/memberListFragment">
+    app:startDestination="@id/titleFragment">
 <!--    <fragment-->
 <!--        android:id="@+id/titleFragment"-->
 <!--        android:name="fi.mobiles.parliament.screens.title.TitleFragment"-->
@@ -39,5 +39,14 @@
         <argument
             android:name="personNumber"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="fi.mobiles.parliament.screens.title.TitleFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_title" >
+        <action
+            android:id="@+id/action_titleFragment_to_memberListFragment"
+            app:destination="@id/memberListFragment" />
     </fragment>
 </navigation>
