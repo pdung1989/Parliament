@@ -14,7 +14,9 @@ import androidx.navigation.fragment.findNavController
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberListBinding
 
-
+/**
+ * Fragment for MemberList
+ */
 class MemberListFragment : Fragment() {
     lateinit var binding: FragmentMemberListBinding
     lateinit var memberListViewModel: MemberListViewModel
@@ -25,26 +27,24 @@ class MemberListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_list, container, false )
-
-        //create an object to access data
-        val viewModelFactory = MemberListViewModelFactory(requireContext())
-
-        //initialize ViewModel
-        memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
-
-        memberListViewModel.getAllMembers()
         // Specify the fragment view as the lifecycle owner of the binding.
         // This is used so that the binding can observe LiveData updates
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
+        //create an object to access data
+        val viewModelFactory = MemberListViewModelFactory()
+        //initialize ViewModel
+        memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
+        //get List of members
+        memberListViewModel.getAllMembers()
 
         // set Adapter for RecyclerView
         val adapter = MemberListAdapter(MemberListener { personNumber ->
             Toast.makeText(context, "${personNumber}", Toast.LENGTH_LONG).show()
             memberListViewModel.onMemberClicked(personNumber)
         })
-
         binding.memberList.adapter = adapter
 
+        //Observe any time when the List<Member> changes
         memberListViewModel.allMembers.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {
                 adapter.submitList(it)
@@ -60,7 +60,6 @@ class MemberListFragment : Fragment() {
                 memberListViewModel.onMemberNavigated()
             }
         })
-
         return binding.root
     }
 }

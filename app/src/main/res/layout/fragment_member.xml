@@ -1,86 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="fi.mobiles.parliament.screens.member.MemberFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+<!--    tools:context="fi.mobiles.parliament.screens.member.MemberFragment">-->
 
-    <data>
-        <variable
-            name="member"
-            type="fi.mobiles.parliament.data.Member" />
-    </data>
-
-    <LinearLayout
-        android:id="@+id/member"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingLeft="20sp"
-        android:paddingTop="20sp"
-        android:paddingRight="20sp"
-        android:paddingBottom="20sp">
+        <data>
+            <variable
+                name="member"
+                type="fi.mobiles.parliament.data.Member" />
+        </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/Style1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_party"
+                android:layout_width="371dp"
+                android:layout_height="116dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:textAlignment="center"
-                android:layout_height="50dp"
+                android:layout_width="397dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="cursive"
                 android:text="@string/name"
+                android:textAlignment="center"
                 android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.529"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_party" />
+
+            <TextView
+                android:id="@+id/age"
+                style="@style/Style1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="64dp"
+                android:text="@string/age"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/Style1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="cursive"
+                android:text="@{(member.minister ? @string/minister : @string/member_of_parliament)}"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age" />
+
+            <TextView
+                android:id="@+id/constituency"
+                style="@style/Style1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{member.constituency}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constituency" />
+
+            <Button
+                android:id="@+id/back_to_party_button"
+                style="@style/Style1"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:layout_marginTop="95dp"
+                android:layout_marginBottom="72dp"
+                android:text="@string/submit"
+                app:backgroundTint="#4CAF50"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
+                app:layout_constraintVertical_bias="0.403" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText"
+                android:layout_width="305dp"
+                android:layout_height="91dp"
+                android:layout_marginTop="32dp"
+                android:hint="Comments"
+                android:singleLine="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/age"
-            style="@style/Style1"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/age" />
-
-        <TextView
-            android:id="@+id/status"
-            style="@style/Style1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="cursive"
-            android:text="@string/status"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/constituency"
-            style="@style/Style1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/constituency" />
-
-        <ImageView
-            android:id="@+id/image_party"
-            android:layout_width="match_parent"
-            android:layout_height="107dp"
-            android:layout_margin="10dp"
-            tools:src="@tools:sample/avatars" />
-
-        <Button
-            android:id="@+id/back_to_party_button"
-            style="@style/Style1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Back To Party List"
-            app:backgroundTint="#4CAF50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </LinearLayout>
 </layout>

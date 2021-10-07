@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 /**
  * The [ViewModel] that is attached to the [MemberListFragment].
  */
-class MemberListViewModel(context: Context): ViewModel() {
+class MemberListViewModel(): ViewModel() {
     var database: MemberDao
 
     // The internal MutableLiveData String that stores the most recent response

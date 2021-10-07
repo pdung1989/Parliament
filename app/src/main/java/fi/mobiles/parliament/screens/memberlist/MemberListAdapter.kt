@@ -9,17 +9,11 @@ import fi.mobiles.parliament.R
 import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.databinding.ListItemMemberBinding
 
-
+/**
+ * Adapter for MemberList RecyclerView
+ */
 class MemberListAdapter(private val clickListener: MemberListener): ListAdapter<Member, MemberListAdapter.ViewHolder>(MemberListDiffCallback()) {
 
-//    var data = listOf<Member>()
-//        @SuppressLint("NotifyDataSetChanged")
-//        set(value) {
-//            field = value
-//            notifyDataSetChanged()
-//        }
-    //RecyclerView needs to know how many items the adapter has for it to display
-    //override fun getItemCount() = data.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), clickListener)
     }
