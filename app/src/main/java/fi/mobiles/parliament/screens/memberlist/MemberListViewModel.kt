@@ -1,6 +1,5 @@
 package fi.mobiles.parliament.screens.memberlist
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import fi.mobiles.parliament.data.Member
@@ -11,7 +10,7 @@ import kotlinx.coroutines.launch
 
 
 /**
- * The [ViewModel] that is attached to the [MemberListFragment].
+ * The ViewModel that is attached to the MemberListFragment.
  */
 class MemberListViewModel(): ViewModel() {
     var database: MemberDao

@@ -15,7 +15,7 @@ import fi.mobiles.parliament.databinding.FragmentMemberBinding
 import java.util.*
 
 /**
- * Fragment for Member
+ * Fragment for Member Detail
  */
 class MemberFragment : Fragment() {
     private lateinit var binding: FragmentMemberBinding
@@ -34,7 +34,6 @@ class MemberFragment : Fragment() {
         // Specify the fragment view as the lifecycle owner of the binding.
         binding.lifecycleOwner = viewLifecycleOwner
 
-        //val viewModelFactory = MemberViewModelFactory(requireContext())
         // Initialize ViewModel
         memberViewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
 
@@ -44,10 +43,10 @@ class MemberFragment : Fragment() {
         // Observe if Member object has changed
         memberViewModel.memberDetail.observe(viewLifecycleOwner, Observer { newMember ->
             newMember?.let {
-                //binding livedata object in the view model in order to communicate directly with the view
+                // Binding livedata object in the view model in order to communicate directly with the view
                 binding.member = newMember
-                binding.age.text = "Age: " + (currentYear - newMember.bornYear.toInt()).toString()
                 binding.name.text = newMember.first + " " + newMember.last
+                binding.age.text = "Age: " + (currentYear - newMember.bornYear.toInt()).toString()
             }
         })
         return binding.root
