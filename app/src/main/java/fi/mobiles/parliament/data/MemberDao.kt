@@ -21,4 +21,18 @@ interface MemberDao {
 
     @Query("SELECT * FROM member_table ORDER BY first ASC")
     fun getAll(): LiveData<List<Member>>
+
+    //insert rating to database
+    @Insert
+    suspend fun insert(rating: Rating)
+
+    //insert comment to database
+    @Insert
+    suspend fun insert(comment: Comment)
+
+    @Query("SELECT * FROM rating_table WHERE personNumber = :personNumber")
+    fun getMemberRatings(personNumber: Int): LiveData<List<Rating>>
+
+    @Query("SELECT * FROM rating_table WHERE personNumber = :personNumber")
+    fun getMemberComments(personNumber: Int): LiveData<List<Comment>>
 }
