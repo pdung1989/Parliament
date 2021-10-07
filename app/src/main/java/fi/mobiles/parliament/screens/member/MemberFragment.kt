@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberBinding
 import java.util.*
@@ -27,6 +29,8 @@ class MemberFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View? {
+
+        // Get args personNumber from memberListFragment
         val personNumber = args.personNumber
 
         // Inflate the layout for this fragment
@@ -45,8 +49,15 @@ class MemberFragment : Fragment() {
             newMember?.let {
                 // Binding livedata object in the view model in order to communicate directly with the view
                 binding.member = newMember
-                binding.name.text = newMember.first + " " + newMember.last
                 binding.age.text = "Age: " + (currentYear - newMember.bornYear.toInt()).toString()
+
+                //
+                Glide
+                    .with(this)
+                    .load("https://avoindata.eduskunta.fi/${newMember.picture}")
+                    .circleCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.memberImage)
             }
         })
         return binding.root

@@ -6,7 +6,6 @@ import fi.mobiles.parliament.R
 import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.data.MemberDao
 import fi.mobiles.parliament.data.MemberDatabase
-import java.util.*
 
 /**
  * ViewModel for MemberFragment
@@ -20,14 +19,6 @@ class MemberViewModel: ViewModel() {
     private lateinit var _personNumber: LiveData<Int>
     val personNumber: LiveData<Int>
         get() = _personNumber
-
-//    lateinit var name: String
-//    lateinit var party: String
-//    lateinit var status: String
-//    lateinit var constituency: String
-//    lateinit var age: String
-// var imageDrawable: Int = 0
-
 
     init {
         database = MemberDatabase.getInstance().memberDao

@@ -20,12 +20,12 @@ class MemberListViewModel(): ViewModel() {
     val response: LiveData<List<Member>>
         get() = _response
 
-    //get list of members from database
+    // Get list of members from database
     private lateinit var _allMembers: LiveData<List<Member>>
     val allMembers: LiveData<List<Member>>
         get() = _allMembers
 
-    // navigate to member fragment
+    // Navigate to member fragment
     private val _navigateToMember = MutableLiveData<Int?>()
     val navigateToMember
         get() = _navigateToMember
@@ -35,8 +35,7 @@ class MemberListViewModel(): ViewModel() {
         getParliamentInfo()
     }
 
-    // Sets the value of the response LiveData to the Members API status or the successful
-    // number of  Member properties retrieved.
+    // Fetch data from internet using retrofit and moshi libraries, then store data in Room
     fun getParliamentInfo() {
         viewModelScope.launch {
             try {
@@ -49,7 +48,6 @@ class MemberListViewModel(): ViewModel() {
                         database.insert(it)
                     }
                 }
-
             } catch (e: Exception) {
                 _response.value = ArrayList()
                 Log.i("error", e.message.toString())
