@@ -30,14 +30,14 @@ class MemberListFragment : Fragment() {
         // Specify the fragment view as the lifecycle owner of the binding.
         // This is used so that the binding can observe LiveData updates
         binding.lifecycleOwner = viewLifecycleOwner
-        //create an object to access data
+
         val viewModelFactory = MemberListViewModelFactory()
-        //initialize ViewModel
+        // Initialize ViewModel
         memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
-        //get List of members
+        // Get List of members
         memberListViewModel.getAllMembers()
 
-        // set Adapter for RecyclerView
+        // Set Adapter for RecyclerView
         val adapter = MemberListAdapter(MemberListener { personNumber ->
             Toast.makeText(context, "${personNumber}", Toast.LENGTH_LONG).show()
             memberListViewModel.onMemberClicked(personNumber)

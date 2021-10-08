@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberBinding
+import fi.mobiles.parliament.screens.memberlist.MemberListViewModelFactory
 import java.util.*
 
 /**
@@ -24,6 +27,7 @@ class MemberFragment : Fragment() {
     private lateinit var memberViewModel: MemberViewModel
     private val args: MemberFragmentArgs by navArgs()
     private val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+    private lateinit var ratingBar: RatingBar
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +38,13 @@ class MemberFragment : Fragment() {
         val personNumber = args.personNumber
 
         // Inflate the layout for this fragment
-       binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member, container, false)
         // Specify the fragment view as the lifecycle owner of the binding.
         binding.lifecycleOwner = viewLifecycleOwner
 
         // Initialize ViewModel
-        memberViewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
+        val viewModelFactory = MemberViewModelFactory()
+        memberViewModel = ViewModelProvider(this, viewModelFactory).get(MemberViewModel::class.java)
 
        // Get member
         memberViewModel.getMember(personNumber)
@@ -59,6 +64,16 @@ class MemberFragment : Fragment() {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(binding.memberImage)
             }
+
+        val ratingBar = binding.ratingBar
+        if (ratingBar != null) {
+            val button = binding.submit
+            button?.setOnClickListener {
+                val msg = ratingBar.rating
+                Toast.makeText(context, "Rating is: " + msg.toString(), Toast.LENGTH_LONG).show()
+                memberViewModel.insertMemberRatingAndComment(personNumber, msg, "")
+            }}
+
         })
         return binding.root
     }

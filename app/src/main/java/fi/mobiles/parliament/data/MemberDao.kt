@@ -3,7 +3,11 @@ package fi.mobiles.parliament.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
-// create DAO class and define methods that can access the database
+/**
+ * Name: DUNG TRAN (2012224)
+ * Date: 28.9.2021
+ * Create DAO class and define methods that can access the database
+ */
 @Dao
 interface MemberDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -24,15 +28,15 @@ interface MemberDao {
 
     //insert rating to database
     @Insert
-    suspend fun insert(rating: Rating)
+    suspend fun insertRating(rating: Rating)
 
     //insert comment to database
     @Insert
-    suspend fun insert(comment: Comment)
+    suspend fun insertComment(comment: Comment)
 
-    @Query("SELECT * FROM rating_table WHERE personNumber = :personNumber")
-    fun getMemberRatings(personNumber: Int): LiveData<List<Rating>>
+    @Query("SELECT rating FROM rating_table WHERE personNumber = :personNumber")
+    fun getAllRatings(personNumber: Int): LiveData<List<Double>>
 
-    @Query("SELECT * FROM rating_table WHERE personNumber = :personNumber")
-    fun getMemberComments(personNumber: Int): LiveData<List<Comment>>
+    @Query("SELECT * FROM comment_table WHERE personNumber = :personNumber")
+    fun getAllComments(personNumber: Int): LiveData<List<Comment>>
 }

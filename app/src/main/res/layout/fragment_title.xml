@@ -36,11 +36,11 @@
 
         <Button
             android:id="@+id/check_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/alegreya_bold_italic"
-            android:text="Check the List"
+            android:text="Check Member List"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

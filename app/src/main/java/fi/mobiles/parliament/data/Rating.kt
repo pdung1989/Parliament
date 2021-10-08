@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 6.10.2021
  * Create Rating table which includes ratings got from users
  */
 @Entity(tableName = "rating_table")
@@ -16,5 +18,5 @@ data class Rating(
     val personNumber: Int,
 
     @ColumnInfo(name = "rating")
-    val rating: Double
+    val rating: Float
 )
