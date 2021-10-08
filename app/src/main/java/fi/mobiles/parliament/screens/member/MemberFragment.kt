@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -17,8 +16,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberBinding
-import fi.mobiles.parliament.screens.memberlist.MemberListFragmentDirections
-import fi.mobiles.parliament.screens.memberlist.MemberListViewModelFactory
 import java.util.*
 
 /**
@@ -45,7 +42,7 @@ class MemberFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         // Initialize ViewModel
-        val viewModelFactory = MemberViewModelFactory()
+        val viewModelFactory = MemberViewModelFactory(personNumber)
         memberViewModel = ViewModelProvider(this, viewModelFactory).get(MemberViewModel::class.java)
 
        // Get member
@@ -95,16 +92,19 @@ class MemberFragment : Fragment() {
             })
 
             // Click see comments button
-            binding.btnCommentList.setOnClickListener {
-                memberViewModel.navigateToComment.observe(viewLifecycleOwner, Observer {
+            binding.btnCommentList.setOnClickListener { memberViewModel.navigateToComment(personNumber) }
+            memberViewModel.navigating.observe(viewLifecycleOwner, Observer {
+                newPersonNumber -> newPersonNumber?.let {
                     this.findNavController().navigate(
                         MemberFragmentDirections
                             .actionMemberFragmentToCommentListFragment(personNumber)
-                    )
+                 )
                     memberViewModel.onCommentNavigated()
-                })
+                }
+            })
 
-            }
+
+                    //memberViewModel.onCommentNavigated()
             // Observe Comment list
 //            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer {
 //                Toast.makeText(context, "comment added", Toast.LENGTH_LONG).show()

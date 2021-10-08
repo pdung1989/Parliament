@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="comment"
+            name="commentData"
             type="fi.mobiles.parliament.data.Comment"/>
     </data>
 
@@ -18,13 +18,13 @@
             android:layout_height="62dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:text="Comment Item"
+            android:text="@string/comment_item"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.038" />
+            app:layout_constraintVertical_bias="0.131" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

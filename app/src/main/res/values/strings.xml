@@ -15,4 +15,5 @@
     <string name="list_of_comments">List Of Comments</string>
     <string name="rating_average">Rating Average</string>
     <string name="see_all_comments">See all comments</string>
+    <string name="comment_item">Comment Item</string>
 </resources>

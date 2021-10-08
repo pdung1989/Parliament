@@ -28,8 +28,8 @@ class CommentListAdapter(): ListAdapter<Comment, CommentListAdapter.ViewHolder>(
     class ViewHolder private constructor(val binding: ListItemCommentBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(comment: Comment) {
-            binding.comment = comment
-            //binding.commentItem.text = comment.comment
+            binding.commentData = comment
+            binding.commentItem.text = comment.comment
         }
 
         companion object {

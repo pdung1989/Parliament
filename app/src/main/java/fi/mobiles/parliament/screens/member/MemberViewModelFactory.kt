@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import fi.mobiles.parliament.data.MemberDao
 
-class MemberViewModelFactory(): ViewModelProvider.Factory {
+class MemberViewModelFactory(private val personNumber: Int): ViewModelProvider.Factory {
         @Suppress("unchecked_cast")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MemberViewModel::class.java)) {
