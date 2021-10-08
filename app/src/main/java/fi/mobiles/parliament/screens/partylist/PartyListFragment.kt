@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentPartyListBinding
 

@@ -67,7 +67,9 @@ class MemberFragment : Fragment() {
 
             val ratingBar = binding.ratingBar
             val comments = binding.comments
+            // Submit button
             binding.submit.setOnClickListener {
+                // Get rate from rating bar
                 val rate = ratingBar.rating
                 // Get comments of the user by changing from textEditable to String in order to insert to database
                 val comment = comments.getText().toString()
@@ -75,16 +77,18 @@ class MemberFragment : Fragment() {
                 memberViewModel.insertMemberRatingAndComment(personNumber, rate, comment)
             }
             memberViewModel.getMemberRatings(personNumber)
+
             //Observe Rating List
             memberViewModel.memberRatings.observe(viewLifecycleOwner, Observer {
                 ratings -> ratings?.let {
                   memberViewModel.getRatingAverage(ratings)
                 }
             })
+
             // Observe rating average
             memberViewModel.ratingAverage.observe(viewLifecycleOwner, Observer { average ->
                 average?.let {
-                    binding.ratingAverage.text = "Rate Average: " + average.toString()
+                    binding.ratingAverage.text = "Rate Average: " + String.format("%.2f", average)
                 }
             })
 
