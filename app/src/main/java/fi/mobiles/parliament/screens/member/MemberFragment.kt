@@ -27,7 +27,7 @@ class MemberFragment : Fragment() {
     private lateinit var memberViewModel: MemberViewModel
     private val args: MemberFragmentArgs by navArgs()
     private val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-    private lateinit var ratingBar: RatingBar
+    //private lateinit var ratingBar: RatingBar
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -65,15 +65,33 @@ class MemberFragment : Fragment() {
                     .into(binding.memberImage)
             }
 
-        val ratingBar = binding.ratingBar
-        if (ratingBar != null) {
-            val button = binding.submit
-            button?.setOnClickListener {
-                val msg = ratingBar.rating
-                Toast.makeText(context, "Rating is: " + msg.toString(), Toast.LENGTH_LONG).show()
-                memberViewModel.insertMemberRatingAndComment(personNumber, msg, "")
-            }}
+            val ratingBar = binding.ratingBar
+            val comments = binding.comments
+            binding.submit.setOnClickListener {
+                val rate = ratingBar.rating
+                // Get comments of the user by changing from textEditable to String in order to insert to database
+                val comment = comments.getText().toString()
+                Toast.makeText(context, "Rating is: " + rate.toString(), Toast.LENGTH_LONG).show()
+                memberViewModel.insertMemberRatingAndComment(personNumber, rate, comment)
+            }
+            memberViewModel.getMemberRatings(personNumber)
+            //Observe Rating List
+            memberViewModel.memberRatings.observe(viewLifecycleOwner, Observer {
+                ratings -> ratings?.let {
+                  memberViewModel.getRatingAverage(ratings)
+                }
+            })
+            // Observe rating average
+            memberViewModel.ratingAverage.observe(viewLifecycleOwner, Observer { average ->
+                average?.let {
+                    binding.ratingAverage.text = "Rate Average: " + average.toString()
+                }
+            })
 
+            // Observe Comment list
+//            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer {
+//                Toast.makeText(context, "comment added", Toast.LENGTH_LONG).show()
+//            })
         })
         return binding.root
     }

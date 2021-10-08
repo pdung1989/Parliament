@@ -11,7 +11,10 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "comment_table")
 data class Comment (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+
+    @ColumnInfo(name = "personNumber")
     val personNumber: Int,
 
     @ColumnInfo(name = "comment")

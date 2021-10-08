@@ -30,7 +30,7 @@ class MemberViewModel: ViewModel() {
     val memberRatings: LiveData<List<Double>>
         get() = _memberRatings
 
-    private lateinit var _ratingAverage: MutableLiveData<Double>
+    private val _ratingAverage = MutableLiveData<Double>()
     val ratingAverage: LiveData<Double>
         get() = _ratingAverage
 
@@ -48,7 +48,7 @@ class MemberViewModel: ViewModel() {
             database.insertRating(Rating(personNumber = personNumber,rating = rating))
 
             if(comment.isNotEmpty()) {
-                database.insertComment(Comment(personNumber, comment))
+                database.insertComment(Comment(personNumber = personNumber, comment = comment))
             }
         }
     }
@@ -56,10 +56,16 @@ class MemberViewModel: ViewModel() {
     fun getMemberRatings(personNumber: Int) {
         _memberRatings = database.getAllRatings(personNumber)
     }
-    fun getRatingAverage(memberRatings: LiveData<List<Double>>) {
-        _ratingAverage.value = (_memberRatings.value)?.average() ?: 0.0
+
+    fun getRatingAverage(memberRatings: List<Double>) {
+        if(memberRatings != null) {
+            _ratingAverage.value = memberRatings.average()
+        } else _ratingAverage.value = 0.0
     }
 
+    fun getMemberComments(personNumber: Int) {
+        _memberComments = database.getAllComments(personNumber)
+    }
 
 //    //member Info by index
 //    fun memberInfo(member: Member) {
