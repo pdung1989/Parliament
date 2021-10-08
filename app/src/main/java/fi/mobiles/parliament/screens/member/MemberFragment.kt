@@ -11,11 +11,13 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberBinding
+import fi.mobiles.parliament.screens.memberlist.MemberListFragmentDirections
 import fi.mobiles.parliament.screens.memberlist.MemberListViewModelFactory
 import java.util.*
 
@@ -92,6 +94,17 @@ class MemberFragment : Fragment() {
                 }
             })
 
+            // Click see comments button
+            binding.btnCommentList.setOnClickListener {
+                memberViewModel.navigateToComment.observe(viewLifecycleOwner, Observer {
+                    this.findNavController().navigate(
+                        MemberFragmentDirections
+                            .actionMemberFragmentToCommentListFragment(personNumber)
+                    )
+                    memberViewModel.onCommentNavigated()
+                })
+
+            }
             // Observe Comment list
 //            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer {
 //                Toast.makeText(context, "comment added", Toast.LENGTH_LONG).show()

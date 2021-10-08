@@ -33,8 +33,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/member_list"
             style="@style/Style1"
-            android:layout_width="391dp"
-            android:layout_height="564dp"
+            android:layout_width="395dp"
+            android:layout_height="596dp"
             android:layout_marginBottom="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

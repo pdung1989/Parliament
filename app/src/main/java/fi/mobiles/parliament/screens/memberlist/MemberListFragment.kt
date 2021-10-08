@@ -44,13 +44,13 @@ class MemberListFragment : Fragment() {
         })
         binding.memberList.adapter = adapter
 
-        //Observe any time when the List<Member> changes
+        // Observe any time when the List<Member> changes
         memberListViewModel.allMembers.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {
                 adapter.submitList(it)
             })
 
-        //navigate to Member Fragment
+        // Navigate to Comment Fragment
         memberListViewModel.navigateToMember.observe(viewLifecycleOwner, Observer { personNumber ->
             personNumber?.let {
                 this.findNavController().navigate(
@@ -60,6 +60,7 @@ class MemberListFragment : Fragment() {
                 memberListViewModel.onMemberNavigated()
             }
         })
+
         return binding.root
     }
 }

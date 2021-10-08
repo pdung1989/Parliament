@@ -39,6 +39,9 @@
         <argument
             android:name="personNumber"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_memberFragment_to_commentListFragment"
+            app:destination="@id/commentListFragment" />
     </fragment>
     <fragment
         android:id="@+id/titleFragment"
@@ -48,5 +51,14 @@
         <action
             android:id="@+id/action_titleFragment_to_memberListFragment"
             app:destination="@id/memberListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commentListFragment"
+        android:name="fi.mobiles.parliament.screens.commentList.CommentListFragment"
+        android:label="fragment_comment_list"
+        tools:layout="@layout/fragment_comment_list" >
+        <argument
+            android:name="personNumber"
+            app:argType="integer" />
     </fragment>
 </navigation>
