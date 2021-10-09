@@ -75,11 +75,15 @@ class MemberFragment : Fragment() {
             binding.submit.setOnClickListener {
                 // Get rate from rating bar
                 val rate = binding.ratingBar.rating
+
                 // Get comments of the user by changing from textEditable to String
                 // in order to insert to database
                 val comment = binding.comments.getText().toString()
                 Toast.makeText(context, "Rating is: " + rate.toString(), Toast.LENGTH_LONG).show()
                 memberViewModel.insertMemberRatingAndComment(personNumber, rate, comment)
+
+                // Clear the comment box after submitting
+                binding.comments.text = null
             }
 
             // Get list of ratings of a Member by personNumber
