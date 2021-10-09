@@ -10,7 +10,11 @@ import androidx.navigation.findNavController
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentTitleBinding
 
-
+/**
+ * Name: DUNG TRAN (2012224)
+ * Date: 3.10.2021
+ * The title Fragment will be displayed when starting the App
+ */
 class TitleFragment : Fragment() {
 
     override fun onCreateView(

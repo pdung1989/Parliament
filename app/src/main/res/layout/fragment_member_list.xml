@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--    data binding viewmodel-->
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="memberListViewModel"-->
-<!--            type="fi.mobiles.parliament.screens.memberlist.MemberListViewModel" />-->
-<!--    </data>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alegreya_bold_italic"
-            android:text="Members of Parliament"
+            android:text="@string/members_of_parliament"
             android:textColor="#07756B"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"

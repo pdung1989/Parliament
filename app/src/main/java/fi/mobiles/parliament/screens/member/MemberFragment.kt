@@ -19,6 +19,8 @@ import fi.mobiles.parliament.databinding.FragmentMemberBinding
 import java.util.*
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 2.10.2021
  * Fragment for Member Detail
  */
 class MemberFragment : Fragment() {
@@ -26,7 +28,6 @@ class MemberFragment : Fragment() {
     private lateinit var memberViewModel: MemberViewModel
     private val args: MemberFragmentArgs by navArgs()
     private val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-    //private lateinit var ratingBar: RatingBar
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -34,19 +35,24 @@ class MemberFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Get args personNumber from memberListFragment
+        // Get args personNumber
         val personNumber = args.personNumber
 
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_member, container, false
+        )
+
         // Specify the fragment view as the lifecycle owner of the binding.
         binding.lifecycleOwner = viewLifecycleOwner
 
         // Initialize ViewModel
         val viewModelFactory = MemberViewModelFactory(personNumber)
-        memberViewModel = ViewModelProvider(this, viewModelFactory).get(MemberViewModel::class.java)
+        memberViewModel = ViewModelProvider(this, viewModelFactory)
+            .get(MemberViewModel::class.java)
 
-        // Get member
+        // Get Member with personNumber
         memberViewModel.getMember(personNumber)
 
         // Observe if Member object has changed
@@ -56,7 +62,7 @@ class MemberFragment : Fragment() {
                 binding.member = newMember
                 binding.age.text = "Age: " + (currentYear - newMember.bornYear.toInt()).toString()
 
-                //
+                // Use Glide to fetch pictures from internet
                 Glide
                     .with(this)
                     .load("https://avoindata.eduskunta.fi/${newMember.picture}")
@@ -65,20 +71,21 @@ class MemberFragment : Fragment() {
                     .into(binding.memberImage)
             }
 
-            val ratingBar = binding.ratingBar
-            val comments = binding.comments
             // Submit button
             binding.submit.setOnClickListener {
                 // Get rate from rating bar
-                val rate = ratingBar.rating
-                // Get comments of the user by changing from textEditable to String in order to insert to database
-                val comment = comments.getText().toString()
+                val rate = binding.ratingBar.rating
+                // Get comments of the user by changing from textEditable to String
+                // in order to insert to database
+                val comment = binding.comments.getText().toString()
                 Toast.makeText(context, "Rating is: " + rate.toString(), Toast.LENGTH_LONG).show()
                 memberViewModel.insertMemberRatingAndComment(personNumber, rate, comment)
             }
+
+            // Get list of ratings of a Member by personNumber
             memberViewModel.getMemberRatings(personNumber)
 
-            //Observe Rating List
+            // Observe rating list
             memberViewModel.memberRatings.observe(viewLifecycleOwner, Observer { ratings ->
                 ratings?.let {
                     memberViewModel.getRatingAverage(ratings)
@@ -93,7 +100,7 @@ class MemberFragment : Fragment() {
             })
 
             // Get member Comments
-            memberViewModel.getMemberComments(personNumber)
+            //memberViewModel.getMemberComments(personNumber)
 
 //           // Observe Comment list
 //            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer { newList ->

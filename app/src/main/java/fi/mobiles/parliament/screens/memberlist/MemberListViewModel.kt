@@ -10,10 +10,12 @@ import kotlinx.coroutines.launch
 
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 1.10.2021
  * The ViewModel that is attached to the MemberListFragment.
  */
-class MemberListViewModel(): ViewModel() {
-    var database: MemberDao
+class MemberListViewModel : ViewModel() {
+    private val database: MemberDao
 
     // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<List<Member>>()
@@ -43,7 +45,7 @@ class MemberListViewModel(): ViewModel() {
                 _response.value = fetchedData
 
                 //insert data to Room
-                if(fetchedData.isNotEmpty()) {
+                if (fetchedData.isNotEmpty()) {
                     fetchedData.forEach {
                         database.insert(it)
                     }
@@ -53,7 +55,7 @@ class MemberListViewModel(): ViewModel() {
                 Log.i("error", e.message.toString())
             }
         }
-   }
+    }
 
     fun getAllMembers() {
         _allMembers = database.getAll()

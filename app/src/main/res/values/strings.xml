@@ -16,4 +16,7 @@
     <string name="rating_average">Rating Average</string>
     <string name="see_all_comments">See all comments</string>
     <string name="comment_item">Comment Item</string>
+    <string name="members_of_parliament">Members of Parliament</string>
+    <string name="finnish_parliament">Finnish Parliament</string>
+    <string name="check_member_list">Check Member List</string>
 </resources>

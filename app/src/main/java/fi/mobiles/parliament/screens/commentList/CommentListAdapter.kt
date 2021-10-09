@@ -5,15 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import fi.mobiles.parliament.R
 import fi.mobiles.parliament.data.Comment
-import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.databinding.ListItemCommentBinding
-import fi.mobiles.parliament.databinding.ListItemMemberBinding
 
 /**
  * Name: DUNG TRAN (2012224)
- * Date: 9.10.2021
+ * Date: 1.10.2021
  * Adapter for CommentList RecyclerView
  */
 class CommentListAdapter :

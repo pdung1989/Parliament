@@ -10,6 +10,8 @@ import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.databinding.ListItemMemberBinding
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 1.10.2021
  * Adapter for MemberList RecyclerView
  */
 class MemberListAdapter(private val clickListener: MemberListener): ListAdapter<Member, MemberListAdapter.ViewHolder>(MemberListDiffCallback()) {
@@ -56,6 +58,7 @@ class MemberListAdapter(private val clickListener: MemberListener): ListAdapter<
     }
 }
 
+// Use DiffCallBack to update the changes in the list of items
 class MemberListDiffCallback: DiffUtil.ItemCallback<Member>() {
     override fun areItemsTheSame(oldItem: Member, newItem: Member): Boolean {
         return oldItem.personNumber == newItem.personNumber

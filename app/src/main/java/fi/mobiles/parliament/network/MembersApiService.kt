@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-//Define an Interface for possible API calls
+// Define an Interface for possible API calls
 interface MembersApiService {
     @GET("~peterh/mps.json")
     suspend fun getProperties(): List<Member>

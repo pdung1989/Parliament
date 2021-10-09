@@ -15,9 +15,9 @@ import fi.mobiles.parliament.screens.member.MemberViewModel
 import fi.mobiles.parliament.screens.member.MemberViewModelFactory
 
 /**
- * A simple [Fragment] subclass.
- * Use the [CommentListFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Name: DUNG TRAN (2012224)
+ * Date: 9.10.2021
+ * Fragment for displaying List of Comments
  */
 class CommentListFragment : Fragment() {
     private lateinit var binding: FragmentCommentListBinding
@@ -29,26 +29,28 @@ class CommentListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_comment_list, container, false)
-        //binding.lifecycleOwner = viewLifecycleOwner
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_comment_list, container, false)
 
-        // get argument for destination
+        // Get argument for destination
         val personNumber = args.personNumber
 
         // Initialize ViewModel
-        commentListViewModel = ViewModelProvider(this, CommentListViewModelFactory()).get(CommentListViewModel::class.java)
+        commentListViewModel = ViewModelProvider(this, CommentListViewModelFactory())
+            .get(CommentListViewModel::class.java)
 
-        // get member comments
+        // Get member comments
         commentListViewModel.getMemberComments(personNumber)
 
+        // Set adapter for the view
         val adapter = CommentListAdapter()
         binding.commentList.adapter = adapter
 
-        //Observe any time when the List<Member> changes
+        //Observe any time when the List<Comment> changes
         commentListViewModel.memberComments.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {
-            adapter.submitList(it)
-        })
+                adapter.submitList(it)
+            })
 
         return binding.root
     }

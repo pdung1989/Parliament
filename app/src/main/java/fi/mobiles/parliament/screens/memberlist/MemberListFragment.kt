@@ -1,7 +1,6 @@
 package fi.mobiles.parliament.screens.memberlist
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,8 @@ import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberListBinding
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 1.10.2021
  * Fragment for MemberList
  */
 class MemberListFragment : Fragment() {
@@ -26,14 +27,15 @@ class MemberListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_list, container, false )
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_list, container, false)
         // Specify the fragment view as the lifecycle owner of the binding.
         // This is used so that the binding can observe LiveData updates
         binding.lifecycleOwner = viewLifecycleOwner
 
         val viewModelFactory = MemberListViewModelFactory()
         // Initialize ViewModel
-        memberListViewModel = ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
+        memberListViewModel =
+            ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
         // Get List of members
         memberListViewModel.getAllMembers()
 
@@ -50,7 +52,7 @@ class MemberListFragment : Fragment() {
                 adapter.submitList(it)
             })
 
-        // Navigate to Comment Fragment
+        // Navigate to Member Fragment
         memberListViewModel.navigateToMember.observe(viewLifecycleOwner, Observer { personNumber ->
             personNumber?.let {
                 this.findNavController().navigate(
