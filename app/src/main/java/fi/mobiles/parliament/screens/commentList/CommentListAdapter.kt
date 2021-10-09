@@ -16,7 +16,8 @@ import fi.mobiles.parliament.databinding.ListItemMemberBinding
  * Date: 9.10.2021
  * Adapter for CommentList RecyclerView
  */
-class CommentListAdapter: ListAdapter<Comment, CommentListAdapter.ViewHolder>(CommentListDiffCallback()) {
+class CommentListAdapter :
+    ListAdapter<Comment, CommentListAdapter.ViewHolder>(CommentListDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val comment = getItem(position)
@@ -28,12 +29,12 @@ class CommentListAdapter: ListAdapter<Comment, CommentListAdapter.ViewHolder>(Co
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ListItemCommentBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(val binding: ListItemCommentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(comment: Comment) {
             binding.commentData = comment
             binding.commentItem.text = comment.comment
-            //binding.executePendingBindings()
         }
 
         companion object {
@@ -46,7 +47,8 @@ class CommentListAdapter: ListAdapter<Comment, CommentListAdapter.ViewHolder>(Co
     }
 }
 
-class CommentListDiffCallback: DiffUtil.ItemCallback<Comment>() {
+// Use DiffCallBack to update the changes in the list of items
+class CommentListDiffCallback : DiffUtil.ItemCallback<Comment>() {
     override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean {
         return oldItem.id == newItem.id
     }

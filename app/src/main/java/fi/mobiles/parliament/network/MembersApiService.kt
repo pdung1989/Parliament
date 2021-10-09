@@ -7,16 +7,18 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-// val can be initialized runtime, const not.
-// compiler replaces references to const types when compiling
-// val are valuated at run time.
+/**
+ * Name: DUNG TRAN (2012224)
+ * Date: 30.9.2021
+ * Using Retrofit and Moshi libraries to fetch JSON data from internet
+ */
 private const val BASE_URL = "https://users.metropolia.fi/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-//create a Retrofit object by using retrofit builder
+// Create a Retrofit object by using retrofit builder
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
@@ -28,8 +30,9 @@ interface MembersApiService {
     suspend fun getProperties(): List<Member>
 }
 
-//initialize the Retrofit service
+// Initialize the Retrofit service
 object MembersApi {
-    val retrofitService : MembersApiService by lazy {
-        retrofit.create(MembersApiService::class.java) }
+    val retrofitService: MembersApiService by lazy {
+        retrofit.create(MembersApiService::class.java)
+    }
 }

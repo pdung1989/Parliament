@@ -6,11 +6,17 @@ import androidx.room.RoomDatabase
 import fi.mobiles.parliament.MyApp
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 28.9.2021
  * A database that stores Member information.
  * And a global method to get access to the database.
  **/
-//Create member database
-@Database(entities = [Member::class, Rating::class, Comment::class], version = 1, exportSchema = false)
+
+@Database(
+    entities = [Member::class, Rating::class, Comment::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class MemberDatabase : RoomDatabase() {
     abstract val memberDao: MemberDao
 
