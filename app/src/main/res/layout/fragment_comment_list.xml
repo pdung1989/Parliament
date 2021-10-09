@@ -27,11 +27,11 @@
             android:id="@+id/comment_list"
             android:layout_width="407dp"
             android:layout_height="580dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:paddingStart="15dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_comment_list" />
 
