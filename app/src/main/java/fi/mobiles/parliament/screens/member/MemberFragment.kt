@@ -29,8 +29,9 @@ class MemberFragment : Fragment() {
     //private lateinit var ratingBar: RatingBar
 
     @SuppressLint("SetTextI18n")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         // Get args personNumber from memberListFragment
@@ -45,7 +46,7 @@ class MemberFragment : Fragment() {
         val viewModelFactory = MemberViewModelFactory(personNumber)
         memberViewModel = ViewModelProvider(this, viewModelFactory).get(MemberViewModel::class.java)
 
-       // Get member
+        // Get member
         memberViewModel.getMember(personNumber)
 
         // Observe if Member object has changed
@@ -78,9 +79,9 @@ class MemberFragment : Fragment() {
             memberViewModel.getMemberRatings(personNumber)
 
             //Observe Rating List
-            memberViewModel.memberRatings.observe(viewLifecycleOwner, Observer {
-                ratings -> ratings?.let {
-                  memberViewModel.getRatingAverage(ratings)
+            memberViewModel.memberRatings.observe(viewLifecycleOwner, Observer { ratings ->
+                ratings?.let {
+                    memberViewModel.getRatingAverage(ratings)
                 }
             })
 
@@ -91,24 +92,55 @@ class MemberFragment : Fragment() {
                 }
             })
 
-            // Click see comments button
-            binding.btnCommentList.setOnClickListener { memberViewModel.navigateToComment(personNumber) }
-            memberViewModel.navigating.observe(viewLifecycleOwner, Observer {
-                newPersonNumber -> newPersonNumber?.let {
-                    this.findNavController().navigate(
-                        MemberFragmentDirections
-                            .actionMemberFragmentToCommentListFragment(personNumber)
-                 )
-                    memberViewModel.onCommentNavigated()
-                }
-            })
+            // Get member Comments
+            memberViewModel.getMemberComments(personNumber)
 
-
-                    //memberViewModel.onCommentNavigated()
-            // Observe Comment list
-//            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer {
-//                Toast.makeText(context, "comment added", Toast.LENGTH_LONG).show()
+//           // Observe Comment list
+//            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer { newList ->
+//                newList?.let {
+//                    // Click see comments button
+//                    binding.btnCommentList.setOnClickListener {
+//                        memberViewModel.navigateToComment(personNumber)
+//                    }
+//                }
 //            })
+
+            //Click see comments button
+            binding.btnCommentList.setOnClickListener {
+                //memberViewModel.navigateToComment(personNumber)
+                this.findNavController().navigate(
+                    MemberFragmentDirections
+                        .actionMemberFragmentToCommentListFragment(personNumber)
+                )
+                // memberViewModel.onCommentNavigated()
+            }
+
+//            memberViewModel.navigating.observe(viewLifecycleOwner, Observer { personNumber ->
+//                personNumber?.let {
+//                    this.findNavController().navigate(
+//                        MemberFragmentDirections
+//                            .actionMemberFragmentToCommentListFragment(personNumber)
+//                    )
+//                    memberViewModel.onCommentNavigated()
+//                }
+//            })
+
+
+//            binding.btnCommentList.setOnClickListener {
+//                memberViewModel.memberComments.observe(viewLifecycleOwner, Observer {
+//                        newList -> newList?.let {
+//                    memberViewModel.navigateToComment()
+//                    this.findNavController().navigate(
+//                        MemberFragmentDirections
+//                            .actionMemberFragmentToCommentListFragment(personNumber)
+//                    )
+//                    Toast.makeText(context, "comment added", Toast.LENGTH_LONG).show()
+//                    memberViewModel.onCommentNavigated()
+//                }
+//                })
+//            }
+            //memberViewModel.onCommentNavigated()
+
         })
         return binding.root
     }

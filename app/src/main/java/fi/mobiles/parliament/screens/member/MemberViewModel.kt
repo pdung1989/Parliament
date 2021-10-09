@@ -33,11 +33,11 @@ class MemberViewModel: ViewModel() {
     val ratingAverage: LiveData<Double>
         get() = _ratingAverage
 
-    // Navigate to comment fragment
-    private val _navigating = MutableLiveData<Int?>()
-    val navigating: MutableLiveData<Int?>
-        get() = _navigating
-
+//    // Navigate to comment fragment
+//    private var _navigating = MutableLiveData<Int?>()
+//    val navigating
+//        get() = _navigating
+//
 
     init {
         database = MemberDatabase.getInstance().memberDao
@@ -71,13 +71,13 @@ class MemberViewModel: ViewModel() {
         _memberComments = database.getAllComments(personNumber)
     }
 
-    fun navigateToComment(personNumber: Int) {
-        _navigating.value = personNumber
-    }
-
-    fun onCommentNavigated() {
-        _navigating.value = null
-    }
+//    fun navigateToComment(personNumber: Int) {
+//        _navigating.value = personNumber
+//    }
+//
+//    fun onCommentNavigated() {
+//        _navigating.value = null
+//    }
 //    //member Info by index
 //    fun memberInfo(member: Member) {
 //        party = member.party

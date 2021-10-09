@@ -12,12 +12,15 @@ import fi.mobiles.parliament.databinding.ListItemCommentBinding
 import fi.mobiles.parliament.databinding.ListItemMemberBinding
 
 /**
+ * Name: DUNG TRAN (2012224)
+ * Date: 9.10.2021
  * Adapter for CommentList RecyclerView
  */
-class CommentListAdapter(): ListAdapter<Comment, CommentListAdapter.ViewHolder>(CommentListDiffCallback()) {
+class CommentListAdapter: ListAdapter<Comment, CommentListAdapter.ViewHolder>(CommentListDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val comment = getItem(position)
+        holder.bind(comment)
     }
 
     // Call when the RecyclerView need a viewHolder
@@ -30,6 +33,7 @@ class CommentListAdapter(): ListAdapter<Comment, CommentListAdapter.ViewHolder>(
         fun bind(comment: Comment) {
             binding.commentData = comment
             binding.commentItem.text = comment.comment
+            //binding.executePendingBindings()
         }
 
         companion object {
