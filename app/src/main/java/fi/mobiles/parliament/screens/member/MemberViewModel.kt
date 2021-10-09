@@ -64,14 +64,14 @@ class MemberViewModel: ViewModel() {
     }
 
     fun getRatingAverage(memberRatings: List<Double>) {
-        if(memberRatings != null) {
+        if(memberRatings.isNotEmpty()) {
             _ratingAverage.value = memberRatings.average()
         } else _ratingAverage.value = 0.0
     }
 
-    fun getMemberComments(personNumber: Int) {
-        _memberComments = database.getAllComments(personNumber)
-    }
+//    fun getMemberComments(personNumber: Int) {
+//        _memberComments = database.getAllComments(personNumber)
+//    }
 
 //    fun navigateToComment(personNumber: Int) {
 //        _navigating.value = personNumber
