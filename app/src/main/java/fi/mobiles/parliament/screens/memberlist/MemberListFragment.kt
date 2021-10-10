@@ -10,8 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.databinding.FragmentMemberListBinding
+import fi.mobiles.parliament.screens.member.MemberFragmentArgs
 
 /**
  * Name: DUNG TRAN (2012224)
@@ -21,6 +23,7 @@ import fi.mobiles.parliament.databinding.FragmentMemberListBinding
 class MemberListFragment : Fragment() {
     lateinit var binding: FragmentMemberListBinding
     lateinit var memberListViewModel: MemberListViewModel
+    private val args: MemberListFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,12 +35,15 @@ class MemberListFragment : Fragment() {
         // This is used so that the binding can observe LiveData updates
         binding.lifecycleOwner = viewLifecycleOwner
 
+        // Get argument "party" from PartyListFragment
+        val party = args.party
+
         val viewModelFactory = MemberListViewModelFactory()
         // Initialize ViewModel
         memberListViewModel =
             ViewModelProvider(this, viewModelFactory).get(MemberListViewModel::class.java)
         // Get List of members
-        memberListViewModel.getAllMembers()
+        memberListViewModel.getAllMembersOfParty(party)
 
         // Set Adapter for RecyclerView
         val adapter = MemberListAdapter(MemberListener { personNumber ->
@@ -47,7 +53,7 @@ class MemberListFragment : Fragment() {
         binding.memberList.adapter = adapter
 
         // Observe any time when the List<Member> changes
-        memberListViewModel.allMembers.observe(viewLifecycleOwner,
+        memberListViewModel.allMembersOfParty.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {
                 adapter.submitList(it)
             })

@@ -23,9 +23,9 @@ class MemberListViewModel : ViewModel() {
         get() = _response
 
     // Get list of members from database
-    private lateinit var _allMembers: LiveData<List<Member>>
-    val allMembers: LiveData<List<Member>>
-        get() = _allMembers
+    private lateinit var _allMembersOfParty: LiveData<List<Member>>
+    val allMembersOfParty: LiveData<List<Member>>
+        get() = _allMembersOfParty
 
     // Navigate to member fragment
     private val _navigateToMember = MutableLiveData<Int?>()
@@ -58,8 +58,8 @@ class MemberListViewModel : ViewModel() {
         }
     }
 
-    fun getAllMembers() {
-        _allMembers = database.getAll()
+    fun getAllMembersOfParty(party: String) {
+        _allMembersOfParty = database.getMembersByParty(party)
     }
 
     fun onMemberClicked(personNumber: Int) {
