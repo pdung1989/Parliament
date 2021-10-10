@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fi.mobiles.parliament.R
-import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.data.Party
 import fi.mobiles.parliament.databinding.ListItemPartyBinding
 
 /**
  * Name: DUNG TRAN (2012224)
- * Date: 1.10.2021
+ * Date: 10.10.2021
  * Adapter for PartyList RecyclerView
  */
 class PartyListAdapter(private val clickListener: PartyListener): ListAdapter<Party, PartyListAdapter.ViewHolder>(PartyListDiffCallback()) {

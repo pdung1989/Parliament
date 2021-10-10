@@ -5,20 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import fi.mobiles.parliament.R
-import fi.mobiles.parliament.databinding.FragmentMemberListBinding
 import fi.mobiles.parliament.databinding.FragmentPartyListBinding
-import fi.mobiles.parliament.screens.memberlist.*
 
 /**
  * Name: DUNG TRAN (2012224)
- * Date: 1.10.2021
- * Fragment for MemberList
+ * Date: 10.10.2021
+ * Fragment for PartyList
  */
 class PartyListFragment : Fragment() {
     lateinit var binding: FragmentPartyListBinding
@@ -38,7 +35,7 @@ class PartyListFragment : Fragment() {
         // Initialize ViewModel
         partyListViewModel =
             ViewModelProvider(this, viewModelFactory).get(PartyListViewModel::class.java)
-        // Get List of members
+        // Get List of parties
         partyListViewModel.getParties()
 
         // Set Adapter for RecyclerView
@@ -47,14 +44,14 @@ class PartyListFragment : Fragment() {
         })
         binding.partyList.adapter = adapter
 
-        // Observe any time when the List<Member> changes
+        // Observe any time when the List<Party> changes
         partyListViewModel.allParties.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer { partyList -> partyList?.let{
                 adapter.submitList(partyList)
             }
             })
 
-        // Navigate to Member Fragment
+        // Navigate to Member List Fragment
         partyListViewModel.navigateToMemberList.observe(viewLifecycleOwner, Observer { party ->
             party?.let {
                 this.findNavController().navigate(

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/memberListFragment"
         android:name="fi.mobiles.parliament.screens.memberlist.MemberListFragment"
-        android:label="fragment_member_list"
+        android:label="Member List "
         tools:layout="@layout/fragment_member_list">
         <action
             android:id="@+id/action_memberListFragment_to_memberFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/memberFragment"
         android:name="fi.mobiles.parliament.screens.member.MemberFragment"
-        android:label="fragment_member"
+        android:label="Member Information"
         tools:layout="@layout/fragment_member">
         <argument
             android:name="personNumber"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/commentListFragment"
         android:name="fi.mobiles.parliament.screens.commentList.CommentListFragment"
-        android:label="fragment_comment_list"
+        android:label="Comment List"
         tools:layout="@layout/fragment_comment_list">
         <argument
             android:name="personNumber"
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/partyListFragment"
         android:name="fi.mobiles.parliament.screens.partyList.PartyListFragment"
-        android:label="PartyListFragment" >
+        android:label="Party List">
         <action
             android:id="@+id/action_partyListFragment_to_memberListFragment"
             app:destination="@id/memberListFragment" />
@@ -51,8 +51,8 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="fi.mobiles.parliament.screens.title.TitleFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/fragment_title" >
+        android:label="Parliament App"
+        tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_partyListFragment"
             app:destination="@id/partyListFragment" />
