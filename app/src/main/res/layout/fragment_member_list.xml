@@ -16,12 +16,12 @@
             android:fontFamily="@font/alegreya_bold_italic"
             android:text="@string/members_of_parliament"
             android:textColor="#07756B"
-            android:textSize="30sp"
+            android:textSize="35sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.043" />
+            app:layout_constraintVertical_bias="0.04" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/member_list"

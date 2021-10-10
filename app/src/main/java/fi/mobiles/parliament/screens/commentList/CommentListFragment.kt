@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import fi.mobiles.parliament.R
@@ -32,12 +33,23 @@ class CommentListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_comment_list, container, false)
 
+        // Specify the fragment view as the lifecycle owner of the binding.
+        binding.lifecycleOwner = viewLifecycleOwner
+
         // Get argument for destination
         val personNumber = args.personNumber
 
         // Initialize ViewModel
         commentListViewModel = ViewModelProvider(this, CommentListViewModelFactory())
             .get(CommentListViewModel::class.java)
+
+        // Get Member Detail then Get her/his name
+        commentListViewModel.getMember(personNumber)
+        commentListViewModel.memberDetail.observe(viewLifecycleOwner, Observer {
+            member -> member?.let {
+            binding.member = member
+            }
+        })
 
         // Get member comments
         commentListViewModel.getMemberComments(personNumber)
