@@ -9,17 +9,18 @@
             name="partyData"
             type="fi.mobiles.parliament.data.Party" />
 
-<!--        <variable-->
-<!--            name="clickListener"-->
-<!--            type="fi.mobiles.parliament.screens.partyList.PartyListener" />-->
+        <variable
+            name="clickListener"
+            type="fi.mobiles.parliament.screens.partyList.PartyListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{() -> clickListener.onClick(partyData.party)}">
 
         <ImageView
-            android:id="@+id/image_party"
+            android:id="@+id/party_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
