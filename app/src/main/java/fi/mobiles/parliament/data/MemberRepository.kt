@@ -2,6 +2,12 @@ package fi.mobiles.parliament.data
 
 import androidx.lifecycle.LiveData
 
+/**
+ * Name: DUNG TRAN (2012224)
+ * Date: 28.9.2021
+ * Create Repository that contains database which needs for the App
+ */
+
 class MemberRepository(private val memberDao: MemberDao) {
 
     fun getAll(): LiveData<List<Member>> = memberDao.getAll()
