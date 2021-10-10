@@ -16,9 +16,7 @@ import kotlinx.coroutines.launch
  * The ViewModel that is attached to the MemberListFragment.
  */
 class MemberListViewModel : ViewModel() {
-
     private val database: MemberRepository
-    //private val database: MemberDao
 
     // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<List<Member>>()

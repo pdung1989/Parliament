@@ -11,7 +11,6 @@ import fi.mobiles.parliament.data.*
  */
 
 class CommentListViewModel : ViewModel() {
-    //private val database: MemberDao
     private val database: MemberRepository
 
     private lateinit var _memberDetail: LiveData<Member>
@@ -34,5 +33,4 @@ class CommentListViewModel : ViewModel() {
     fun getMember(personNumber: Int) {
         _memberDetail = database.getMember(personNumber)
     }
-
 }

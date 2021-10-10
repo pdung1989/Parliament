@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
  * ViewModel for MemberFragment
  */
 class MemberViewModel: ViewModel() {
-    //private val database: MemberDao
     private val database: MemberRepository
 
     private lateinit var _memberDetail: LiveData<Member>
@@ -35,12 +34,6 @@ class MemberViewModel: ViewModel() {
     private val _ratingAverage = MutableLiveData<Double>()
     val ratingAverage: LiveData<Double>
         get() = _ratingAverage
-
-//    // Navigate to comment fragment
-//    private var _navigating = MutableLiveData<Int?>()
-//    val navigating
-//        get() = _navigating
-//
 
     init {
         val memberDao = MemberDatabase.getInstance().memberDao
@@ -70,17 +63,5 @@ class MemberViewModel: ViewModel() {
             _ratingAverage.value = memberRatings.average()
         } else _ratingAverage.value = 0.0
     }
-
-//    fun getMemberComments(personNumber: Int) {
-//        _memberComments = database.getAllComments(personNumber)
-//    }
-
-//    fun navigateToComment(personNumber: Int) {
-//        _navigating.value = personNumber
-//    }
-//
-//    fun onCommentNavigated() {
-//        _navigating.value = null
-//    }
 
 }
