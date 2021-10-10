@@ -26,7 +26,7 @@ class TitleFragment : Fragment() {
             R.layout.fragment_title, container, false)
 
         binding.checkButton.setOnClickListener{ view: View ->
-            view.findNavController().navigate(R.id.action_titleFragment_to_memberListFragment)
+            view.findNavController().navigate(R.id.action_titleFragment_to_partyListFragment)
         }
         return binding.root
     }

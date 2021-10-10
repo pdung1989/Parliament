@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import fi.mobiles.parliament.R
 import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.data.Party
-import fi.mobiles.parliament.databinding.ListItemMemberBinding
 import fi.mobiles.parliament.databinding.ListItemPartyBinding
 
 /**
  * Name: DUNG TRAN (2012224)
  * Date: 1.10.2021
- * Adapter for MemberList RecyclerView
+ * Adapter for PartyList RecyclerView
  */
 class PartyListAdapter(private val clickListener: PartyListener): ListAdapter<Party, PartyListAdapter.ViewHolder>(PartyListDiffCallback()) {
 
@@ -30,8 +29,9 @@ class PartyListAdapter(private val clickListener: PartyListener): ListAdapter<Pa
     class ViewHolder private constructor(val binding: ListItemPartyBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(party: Party, clickListener: PartyListener) {
-            binding.clickListener = clickListener
             binding.partyData = party
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
 
             val imageDrawable = when (party.party) {
                 "sd" -> R.drawable.sd
@@ -59,12 +59,12 @@ class PartyListAdapter(private val clickListener: PartyListener): ListAdapter<Pa
 }
 
 // Use DiffCallBack to update the changes in the list of items
-class PartyListDiffCallback: DiffUtil.ItemCallback<Member>() {
-    override fun areItemsTheSame(oldItem: Member, newItem: Member): Boolean {
+class PartyListDiffCallback: DiffUtil.ItemCallback<Party>() {
+    override fun areItemsTheSame(oldItem: Party, newItem: Party): Boolean {
         return oldItem.party == newItem.party
     }
 
-    override fun areContentsTheSame(oldItem: Member, newItem: Member): Boolean {
+    override fun areContentsTheSame(oldItem: Party, newItem: Party): Boolean {
         return oldItem == newItem
     }
 }

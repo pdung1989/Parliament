@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_memberListFragment_to_memberFragment"
             app:destination="@id/memberFragment" />
+        <argument
+            android:name="party"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -29,16 +32,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/titleFragment"
-        android:name="fi.mobiles.parliament.screens.title.TitleFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/fragment_title">
-        <action
-            android:id="@+id/action_titleFragment_to_memberListFragment"
-            app:destination="@id/memberListFragment" />
-    </fragment>
-
-    <fragment
         android:id="@+id/commentListFragment"
         android:name="fi.mobiles.parliament.screens.commentList.CommentListFragment"
         android:label="fragment_comment_list"
@@ -46,5 +39,22 @@
         <argument
             android:name="personNumber"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/partyListFragment"
+        android:name="fi.mobiles.parliament.screens.partyList.PartyListFragment"
+        android:label="PartyListFragment" >
+        <action
+            android:id="@+id/action_partyListFragment_to_memberListFragment"
+            app:destination="@id/memberListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="fi.mobiles.parliament.screens.title.TitleFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_title" >
+        <action
+            android:id="@+id/action_titleFragment_to_partyListFragment"
+            app:destination="@id/partyListFragment" />
     </fragment>
 </navigation>

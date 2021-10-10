@@ -21,9 +21,11 @@
             tools:layout_editor_absoluteY="34dp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/party_list"
             android:layout_width="395dp"
             android:layout_height="648dp"
             android:layout_marginBottom="22dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
