@@ -2,6 +2,7 @@ package fi.mobiles.parliament.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import fi.mobiles.parliament.databinding.FragmentPartyListBinding
 
 /**
  * Name: DUNG TRAN (2012224)
@@ -19,6 +20,12 @@ interface MemberDao {
 
     @Query("SELECT * FROM member_table ORDER BY first ASC")
     fun getAll(): LiveData<List<Member>>
+
+    @Query("SELECT DISTINCT party from member_table ORDER BY party ASC")
+    fun getAllParties(): LiveData<List<Party>>
+
+    @Query("SELECT * FROM member_table WHERE party = :party ORDER BY first ASC")
+    fun getMembersByParty(party: String): LiveData<List<Member>>
 
     //insert rating to database
     @Insert

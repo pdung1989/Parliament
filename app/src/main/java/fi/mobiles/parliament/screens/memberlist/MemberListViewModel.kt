@@ -3,7 +3,6 @@ package fi.mobiles.parliament.screens.memberlist
 import android.util.Log
 import androidx.lifecycle.*
 import fi.mobiles.parliament.data.Member
-import fi.mobiles.parliament.data.MemberDao
 import fi.mobiles.parliament.data.MemberDatabase
 import fi.mobiles.parliament.data.MemberRepository
 import fi.mobiles.parliament.network.MembersApi

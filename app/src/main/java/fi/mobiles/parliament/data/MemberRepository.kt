@@ -13,11 +13,18 @@ class MemberRepository(private val memberDao: MemberDao) {
     fun getAll(): LiveData<List<Member>> = memberDao.getAll()
 
     suspend fun insert(member: Member) = memberDao.insert(member)
+
     fun getMember(personNumber: Int): LiveData<Member> = memberDao.getMember(personNumber)
 
+    fun getAllParties(): LiveData<List<Party>> = memberDao.getAllParties()
+
+    fun getMembersByParty(party: String): LiveData<List<Member>> = memberDao.getMembersByParty(party)
+
     suspend fun insertRating(rating: Rating) = memberDao.insertRating(rating)
+
     suspend fun insertComment(comment: Comment) = memberDao.insertComment(comment)
 
     fun getAllRatings(personNumber: Int): LiveData<List<Double>> = memberDao.getAllRatings(personNumber)
+
     fun getAllComments(personNumber: Int): LiveData<List<Comment>> = memberDao.getAllComments(personNumber)
 }
