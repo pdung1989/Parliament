@@ -63,5 +63,4 @@ class MemberViewModel: ViewModel() {
             _ratingAverage.value = memberRatings.average()
         } else _ratingAverage.value = 0.0
     }
-
 }

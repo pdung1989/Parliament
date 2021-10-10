@@ -103,54 +103,13 @@ class MemberFragment : Fragment() {
                 }
             })
 
-            // Get member Comments
-            //memberViewModel.getMemberComments(personNumber)
-
-//           // Observe Comment list
-//            memberViewModel.memberComments.observe(viewLifecycleOwner, Observer { newList ->
-//                newList?.let {
-//                    // Click see comments button
-//                    binding.btnCommentList.setOnClickListener {
-//                        memberViewModel.navigateToComment(personNumber)
-//                    }
-//                }
-//            })
-
             //Click see comments button
             binding.btnCommentList.setOnClickListener {
-                //memberViewModel.navigateToComment(personNumber)
                 this.findNavController().navigate(
                     MemberFragmentDirections
                         .actionMemberFragmentToCommentListFragment(personNumber)
                 )
-                // memberViewModel.onCommentNavigated()
             }
-
-//            memberViewModel.navigating.observe(viewLifecycleOwner, Observer { personNumber ->
-//                personNumber?.let {
-//                    this.findNavController().navigate(
-//                        MemberFragmentDirections
-//                            .actionMemberFragmentToCommentListFragment(personNumber)
-//                    )
-//                    memberViewModel.onCommentNavigated()
-//                }
-//            })
-
-
-//            binding.btnCommentList.setOnClickListener {
-//                memberViewModel.memberComments.observe(viewLifecycleOwner, Observer {
-//                        newList -> newList?.let {
-//                    memberViewModel.navigateToComment()
-//                    this.findNavController().navigate(
-//                        MemberFragmentDirections
-//                            .actionMemberFragmentToCommentListFragment(personNumber)
-//                    )
-//                    Toast.makeText(context, "comment added", Toast.LENGTH_LONG).show()
-//                    memberViewModel.onCommentNavigated()
-//                }
-//                })
-//            }
-            //memberViewModel.onCommentNavigated()
 
         })
         return binding.root
