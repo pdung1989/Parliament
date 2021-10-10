@@ -2,10 +2,7 @@ package fi.mobiles.parliament.screens.commentList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import fi.mobiles.parliament.data.Comment
-import fi.mobiles.parliament.data.Member
-import fi.mobiles.parliament.data.MemberDao
-import fi.mobiles.parliament.data.MemberDatabase
+import fi.mobiles.parliament.data.*
 
 /**
  * Name: DUNG TRAN (2012224)
@@ -14,7 +11,8 @@ import fi.mobiles.parliament.data.MemberDatabase
  */
 
 class CommentListViewModel : ViewModel() {
-    private val database: MemberDao
+    //private val database: MemberDao
+    private val database: MemberRepository
 
     private lateinit var _memberDetail: LiveData<Member>
     val memberDetail: LiveData<Member>
@@ -25,7 +23,8 @@ class CommentListViewModel : ViewModel() {
         get() = _memberComments
 
     init {
-        database = MemberDatabase.getInstance().memberDao
+        val memberDao = MemberDatabase.getInstance().memberDao
+        database = MemberRepository(memberDao)
     }
 
     fun getMemberComments(personNumber: Int) {

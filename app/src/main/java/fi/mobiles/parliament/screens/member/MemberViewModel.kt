@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
  * ViewModel for MemberFragment
  */
 class MemberViewModel: ViewModel() {
-    private val database: MemberDao
+    //private val database: MemberDao
+    private val database: MemberRepository
 
     private lateinit var _memberDetail: LiveData<Member>
     val memberDetail: LiveData<Member>
@@ -42,7 +43,8 @@ class MemberViewModel: ViewModel() {
 //
 
     init {
-        database = MemberDatabase.getInstance().memberDao
+        val memberDao = MemberDatabase.getInstance().memberDao
+        database = MemberRepository(memberDao)
     }
 
    fun getMember(personNumber: Int) {

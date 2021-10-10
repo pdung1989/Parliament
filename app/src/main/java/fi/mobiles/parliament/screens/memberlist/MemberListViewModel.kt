@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import fi.mobiles.parliament.data.Member
 import fi.mobiles.parliament.data.MemberDao
 import fi.mobiles.parliament.data.MemberDatabase
+import fi.mobiles.parliament.data.MemberRepository
 import fi.mobiles.parliament.network.MembersApi
 import kotlinx.coroutines.launch
 
@@ -15,7 +16,9 @@ import kotlinx.coroutines.launch
  * The ViewModel that is attached to the MemberListFragment.
  */
 class MemberListViewModel : ViewModel() {
-    private val database: MemberDao
+
+    private val database: MemberRepository
+    //private val database: MemberDao
 
     // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<List<Member>>()
@@ -33,7 +36,8 @@ class MemberListViewModel : ViewModel() {
         get() = _navigateToMember
 
     init {
-        database = MemberDatabase.getInstance().memberDao
+        val memberDao = MemberDatabase.getInstance().memberDao
+        database = MemberRepository(memberDao)
         getParliamentInfo()
     }
 
