@@ -47,7 +47,6 @@ class MemberListFragment : Fragment() {
 
         // Set Adapter for RecyclerView
         val adapter = MemberListAdapter(MemberListener { personNumber ->
-            Toast.makeText(context, "${personNumber}", Toast.LENGTH_LONG).show()
             memberListViewModel.onMemberClicked(personNumber)
         })
         binding.memberList.adapter = adapter
