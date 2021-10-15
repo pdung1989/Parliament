@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
  * The ViewModel Factory for creating Member List ViewModel
  */
 
-class MemberListViewModelFactory(): ViewModelProvider.Factory {
+class MemberListViewModelFactory: ViewModelProvider.Factory {
         @Suppress("unchecked_cast")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MemberListViewModel::class.java)) {

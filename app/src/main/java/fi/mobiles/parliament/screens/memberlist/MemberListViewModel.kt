@@ -39,6 +39,7 @@ class MemberListViewModel : ViewModel() {
     }
 
     // Fetch data from internet using retrofit and moshi libraries, then store data in Room
+    // Fetching data can be take place in the repository
     fun getParliamentInfo() {
         viewModelScope.launch {
             try {

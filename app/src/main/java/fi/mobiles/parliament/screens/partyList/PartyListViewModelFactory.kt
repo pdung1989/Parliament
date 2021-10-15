@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
  * The ViewModel Factory for creating Party List ViewModel
  */
 
-class PartyListViewModelFactory(): ViewModelProvider.Factory {
+class PartyListViewModelFactory: ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PartyListViewModel::class.java)) {

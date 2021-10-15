@@ -19,14 +19,6 @@ class MemberViewModel: ViewModel() {
     val memberDetail: LiveData<Member>
         get() = _memberDetail
 
-    private lateinit var _personNumber: LiveData<Int>
-    val personNumber: LiveData<Int>
-        get() = _personNumber
-
-    private lateinit var _memberComments: LiveData<List<Comment>>
-    val memberComments: LiveData<List<Comment>>
-        get() = _memberComments
-
     private lateinit var _memberRatings: LiveData<List<Double>>
     val memberRatings: LiveData<List<Double>>
         get() = _memberRatings

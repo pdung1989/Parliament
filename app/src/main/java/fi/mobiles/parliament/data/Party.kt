@@ -11,8 +11,6 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "party_table")
 data class Party(
-//    @PrimaryKey(autoGenerate = true)
-//    val id: Int = 0,
 
     @ColumnInfo(name = "party")
     val party: String
