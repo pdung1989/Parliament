@@ -6,8 +6,10 @@
 #### An Android App shows the list of members in Parliament using Kotlin. The app includes different views:
 
 - View 1: Title of the App
-- View 2: List of members
-- View 3: Member's details
+- View 2: List of parties 
+- View 3: List of members of each party
+- View 4: Member's details
+- View 5: Show feedback of a member
 
 #### Project main concepts:
 
