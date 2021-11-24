@@ -17,4 +17,5 @@
 - View model is used for each view and with binding mechanism.
 - Displaying collections of information with RecyclerView.
 - Live data is used to update views from database.
+- Coroutin is for handling data in asynchronous way.
 - Data is fetched from the internet (https://users.metropolia.fi/~peterh/mps.json) using retrofit and moshi libraries and then stored in Room database of the device.
